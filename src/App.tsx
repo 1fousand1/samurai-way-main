@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 import Technologies from './Technologies';
-import Header from './Header.js';
+import Header from './Header';
 
 
-const App = () => {
+
+function App()  {
   return (
      <div>
          <Header />

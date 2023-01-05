@@ -1,6 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const Header = ()=> {
+type headerPropsType = {
+
+}
+
+function Header() {
     return (
         <div>
             <a href="#">Home</a>

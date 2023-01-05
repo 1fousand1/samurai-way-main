@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const Technologies = () => {
+function Technologies() {
     return (
         <div>
             <ul>
