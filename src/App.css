@@ -15,17 +15,21 @@
 }
 
 .header img {
-  width: 20px;
+  width: 50px;
 
 }
 
 .nav {
   grid-area: n;
-  background-color: black;
+  background-color: burlywood;
 }
 
 .content {
   grid-area: c;
   background-color: cornflowerblue;
+}
+
+.content img{
+  width: 800px
 }
 
