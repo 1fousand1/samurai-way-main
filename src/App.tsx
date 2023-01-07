@@ -8,15 +8,12 @@ import {Profile} from "./components/Profile/Profile";
 function App()  {
   return (
       <div className='app-wrapper'>
-              <Header />
-              <Navbar />
-          {/*<div className='app-wrapper-content'>*/}
-             <Profile />
-          {/*</div>*/}
+          <Header/>
+          <Navbar/>
+          <Profile/>
       </div>
   );
 }
-
 
 
 

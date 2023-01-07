@@ -2,15 +2,19 @@ import React from "react";
 import s from './Post.module.css';
 
 
-export function Post(){
+type PostTypeProps ={
+    message: string,
+    likesCount: number
+}
+
+export function Post(props:PostTypeProps){
     return(
         <div className={s.item}>
             <img src='https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'/>
-            Post 1
+            { props.message }
             <div>
-                <span>like</span>
+                <span>like</span> {props.likesCount}
             </div>
-
         </div>
     )
 }

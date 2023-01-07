@@ -1,13 +1,12 @@
 import React from "react";
 import s from './Navbar.module.css';
 
-/*let s = {
-    'nav': 'Navbar_127',
-    'item': 'Navbar_yo'
+/*type NavbarTypeProps = {
+    title: string
 }*/
 
 
-export function Navbar() {
+export const Navbar/*:React.FC<NavbarTypeProps>*/ = () => {
     return (
             <nav className={s.nav}>
                 <div className={s.item}><a>Profile</a></div>

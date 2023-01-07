@@ -2,6 +2,10 @@ import React from "react";
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 
+/*type MyPostsTypeProps = {
+    message: string,
+    likesCount: number
+}*/
 
 export function MyPosts(){
     return(
@@ -15,10 +19,8 @@ export function MyPosts(){
                 New post
             </div>
             <div className={s.posts}>
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                <Post message={'Hi, how are you'} likesCount={0} />
+                <Post message={'Its my first post'} likesCount={23} />
             </div>
         </div>
     )

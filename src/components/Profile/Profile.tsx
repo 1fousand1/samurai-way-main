@@ -2,7 +2,11 @@ import React from "react";
 import s from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
 
-export function Profile(){
+/*type ProfileTypeProps = {
+    title: string
+}*/
+
+export const Profile/*:React.FC<ProfileTypeProps>*/ = () => {
     return (
             <div className={s.content}>
                 <div>
