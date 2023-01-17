@@ -2,12 +2,14 @@
     grid-area: n;
     background-color: saddlebrown;
     color:white;
+    padding:20px
 }
 
-.item{
-    color:white;
+.item a {
+    color: white;
+    text-decoration: none;
 }
 
-.item.active {
+.item a.active {
     color: gold;
 }
