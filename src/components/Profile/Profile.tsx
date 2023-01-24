@@ -6,6 +6,8 @@ import ProfileInfo from "./Profileinfo/ProfileInfo";
 
 
 export const Profile = () => {
+
+
     return (
             <div>
                 <ProfileInfo />
