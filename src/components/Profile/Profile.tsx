@@ -4,14 +4,16 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 
 
-
 export const Profile = () => {
 
 
     return (
-            <div>
-                <ProfileInfo />
-                <MyPosts />
-            </div>
+        <div>
+            <ProfileInfo/>
+            <MyPosts posts={props.profilePage.posts}
+                     newPostText={props.profilePage.newPostText}
+                     dispatch={props.dispatch}
+                     />
+        </div>
     )
 }

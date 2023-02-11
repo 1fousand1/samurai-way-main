@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
@@ -8,11 +8,15 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
-import state from './redux/state'
+import state, {changeNewText, RootStatePropsType} from './redux/state'
 
 
+export type AppPropsType = {
+    state: RootStatePropsType
+}
 
-function App() {
+
+const App:FC<AppPropsType> = (props) => {
 
     return (
         <BrowserRouter>
@@ -20,12 +24,13 @@ function App() {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={()=><Profile  />}/>
-                    <Route path='/dialogs' render={()=><Dialogs  />}/>
+                    <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}
+                                                                  dispatch={props.dispatch}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}/>}/>
 
-                    <Route path='/news' render={() => <News />}/>
-                    <Route path='/music' render ={()=> <Music />}/>
-                    <Route path='/settings' component={()=> <Settings />}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/music' render={() => <Music/>}/>
+                    <Route path='/settings' component={() => <Settings/>}/>
                 </div>
             </div>
         </BrowserRouter>

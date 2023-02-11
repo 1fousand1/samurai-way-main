@@ -22,6 +22,8 @@ const Dialogs = () => {
             <div className={s.messages}>
                 {messagesElements}
             </div>
+
+
         </div>
     )
 };
