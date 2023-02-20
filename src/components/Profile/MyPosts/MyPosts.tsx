@@ -1,27 +1,37 @@
-import React, { useRef } from 'react'
+import React, {FC} from 'react'
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import state, {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {
+    ADD_POST,
+    addPostActionCreator, PostType,
+    ProfilePageType, StoreType,
+    updateNewPostTextActionCreator
+} from "../../../redux/state";
+import {AnyAction} from "redux";
 
+type MyPostsPropsType = {
+    posts: Array<PostType>
+    newPostText: string
+    dispatch: (action: AnyAction) => void
+}
 
+export const MyPosts:FC<MyPostsPropsType> = (props) => {
 
-
-export function MyPosts(){
-
-    let posts = state.profilePage.posts
-
-    let postsElements = posts.map((p) => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+       props.dispatch(addPostActionCreator(props.newPostText));
+        /*store.dispatch({ type: ADD_POST, postText: props.newPostText });*/
 
     }
     let onPostChange = () => {
-        let text = newPostElement.current.value;
-        let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action);
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            let action = updateNewPostTextActionCreator(text);
+            props.dispatch(action);
+        }
     }
 
 

@@ -9,7 +9,7 @@ type DialogItemPropsType = {
 }
 
 
-const DialogItem = (props: DialogItemPropsType) => {
+const DialogItem:React.FC<DialogItemPropsType> = (props ) => {
     let path = "/dialogs/" + props.id
 
     return (
