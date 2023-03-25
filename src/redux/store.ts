@@ -6,20 +6,16 @@ export type StoreType = {
     _onChange: (newState: RootStateType) => void
     subscribe: (callback: (newState: RootStateType) => void) => void
     getState: () => RootStateType
-    dispatch: (action:ActionType) => void
+    dispatch: (action:ActionsType) => void
 }
 
 
 
-export type ActionType = ActionTypesProfile | ActionTypesDialogs
+export type ActionsType = ActionTypesProfile | ActionTypesDialogs
 
-type ActionTypesProfile = { type: 'ADD_POST' } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string };
+type ActionTypesProfile = { type: 'ADD-POST', postText: string } | { type: 'UPDATE-NEW-POST-TEXT'; newText: string };
 
-export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string }
-    | { type: 'SEND_MESSAGE' };
-
-
-
+export type ActionTypesDialogs = { type: 'UPDATE-NEW-MESSAGE-BODY'; body: string } | { type: 'SEND-MESSAGE' };
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -103,7 +99,7 @@ export const store: StoreType = {
         this._onChange = callback;
     },
 
-    dispatch(action: ActionType) {
+    dispatch(action: ActionsType) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         /*this._state.sidebar = sidebarReducer(this._state.sidebar, action);*/
@@ -140,5 +136,3 @@ export const updateNewMessageBodyCreator = (body: string) => {
 }
 
 export default store;
-/*
-window.store = store;*/

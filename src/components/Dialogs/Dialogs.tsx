@@ -7,7 +7,7 @@ import state, {
     sendMessageCreator,
     StoreType,
     updateNewMessageBodyCreator
-} from "../../redux/state";
+} from "../../redux/store";
 import {AnyAction} from "redux";
 
 type DialogsPropsType = {

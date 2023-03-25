@@ -1,4 +1,4 @@
-import {ActionType, DialogsPageType, MessageType, UPDATE_NEW_MESSAGE_BODY} from "./state";
+import {ActionsType, DialogsPageType, MessageType, UPDATE_NEW_MESSAGE_BODY} from "./store";
 
 
 
@@ -6,17 +6,17 @@ import {ActionType, DialogsPageType, MessageType, UPDATE_NEW_MESSAGE_BODY} from 
 
 const dialogsReducer = (
     state: DialogsPageType,
-    action: ActionType
+    action: ActionsType
 ): DialogsPageType => {
     switch (action.type) {
-        case 'UPDATE_NEW_MESSAGE_BODY': {
+        case 'UPDATE-NEW-MESSAGE-BODY': {
             const newState: DialogsPageType = {
                 ...state,
                 newMessageBody: action.body,
             };
             return newState;
         }
-        case 'SEND_MESSAGE': {
+        case 'SEND-MESSAGE': {
             const newMessage: MessageType = {
                 id: state.messages.length + 1,
                 message: state.newMessageBody,

@@ -1,19 +1,16 @@
 import React, {FC} from 'react'
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {
-    ADD_POST,
-    addPostActionCreator, PostType,
-    ProfilePageType, StoreType,
-    updateNewPostTextActionCreator
-} from "../../../redux/state";
+import {ActionsType, addPostActionCreator, PostType, updateNewPostTextActionCreator} from "../../../redux/store";
 import {AnyAction} from "redux";
 
 type MyPostsPropsType = {
     posts: Array<PostType>
     newPostText: string
-    dispatch: (action: AnyAction) => void
+    dispatch: (action: ActionsType) => void
 }
+
+
 
 export const MyPosts:FC<MyPostsPropsType> = (props) => {
 
@@ -23,9 +20,9 @@ export const MyPosts:FC<MyPostsPropsType> = (props) => {
 
     let addPost = () => {
        props.dispatch(addPostActionCreator(props.newPostText));
-        /*store.dispatch({ type: ADD_POST, postText: props.newPostText });*/
 
     }
+
     let onPostChange = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;

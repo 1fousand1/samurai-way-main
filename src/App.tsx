@@ -8,12 +8,12 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
-import {RootStateType, store, StoreType} from "./redux/state";
+import {ActionsType, RootStateType, store, StoreType} from "./redux/store";
 import {AnyAction, Dispatch} from "redux";
 
-type AppPropsType = {
+export type AppPropsType = {
     state: RootStateType
-    dispatch: (action: AnyAction) => void
+    dispatch: (action: ActionsType) => void
 }
 
 const App:React.FC<AppPropsType> = (props) => {

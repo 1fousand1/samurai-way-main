@@ -1,10 +1,10 @@
-import {ActionType, PostType, ProfilePageType, UPDATE_NEW_POST_TEXT} from "./state";
+import {ActionsType, PostType, ProfilePageType, UPDATE_NEW_POST_TEXT} from "./store";
 
 
 
- const profileReducer = (state: ProfilePageType, action: ActionType) => {
+ const profileReducer = (state: ProfilePageType, action: ActionsType) => {
     switch (action.type) {
-        case 'ADD_POST': {
+        case 'ADD-POST': {
             const newPost: PostType = {
                 id: new Date().getTime(),
                 message: state.newPostText,
@@ -17,7 +17,7 @@ import {ActionType, PostType, ProfilePageType, UPDATE_NEW_POST_TEXT} from "./sta
             };
             return newState;
         }
-        case 'UPDATE_NEW_POST_TEXT': {
+        case 'UPDATE-NEW-POST-TEXT': {
             const newState: ProfilePageType = {
                 ...state,
                 newPostText: action.newText
