@@ -8,11 +8,9 @@ export type RootState = typeof reducers
 export type ReduxStateType = ReturnType<RootState>
 
 
-
 const reducers = combineReducers({
-    profilePage: profileReducer,
-    dialogs: dialogsReducer
-   /* sidebar: sidebarReducer*/
+    profileReducer,
+    dialogsReducer
 });
 
 export const store: StoreType = createStore(reducers)

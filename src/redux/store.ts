@@ -1,14 +1,8 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
+import {RootState} from "./redux-store";
+import {AnyAction, Store} from "redux";
 
-export type StoreType = {
-    _state: RootStateType
-    _onChange: (newState: RootStateType) => void
-    subscribe: (callback: (newState: RootStateType) => void) => void
-    getState: () => RootStateType
-    dispatch: (action:ActionsType) => void
-}
 
+export type StoreType = Store<RootState, AnyAction>;
 
 
 export type ActionsType = ActionTypesProfile | ActionTypesDialogs
@@ -28,6 +22,7 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
+
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
@@ -59,7 +54,7 @@ export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 export const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
 export const SEND_MESSAGE = "SEND_MESSAGE";
 
-export const store: StoreType = {
+/*export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -102,11 +97,11 @@ export const store: StoreType = {
     dispatch(action: ActionsType) {
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-        /*this._state.sidebar = sidebarReducer(this._state.sidebar, action);*/
+        /!*this._state.sidebar = sidebarReducer(this._state.sidebar, action);*!/
 
         this._onChange(this._state);
     }
-}
+}*/
 
 export const addPostActionCreator = (postText: string) => {
     return {
@@ -135,4 +130,4 @@ export const updateNewMessageBodyCreator = (body: string) => {
     } as const
 }
 
-export default store;
+
