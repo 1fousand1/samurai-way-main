@@ -2,6 +2,7 @@ import React from 'react'
 import {addPostActionCreator, PostType, RootStateType, updateNewPostTextActionCreator} from "../../../redux/store";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
+import {ReduxStateType} from "../../../redux/redux-store";
 
 
 type MapStatePropsType = {
@@ -16,11 +17,11 @@ type MapDispatchPropsType = {
 
 export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
 
-const mapStateToProps = (state: RootStateType): MapStatePropsType => {
+const mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
     return {
-        posts: state.profilePage.posts
+        posts: state.profileReducer.posts
         ,
-        newPostText: state.profilePage.newPostText
+        newPostText: state.profileReducer.newPostText
     }
 }
 
