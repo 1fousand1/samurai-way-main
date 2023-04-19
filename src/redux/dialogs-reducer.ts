@@ -27,14 +27,14 @@ const dialogsReducer = (
     action: ActionsType
 ): DialogsPageType => {
     switch (action.type) {
-        case 'UPDATE-NEW-MESSAGE-BODY': {
+        case 'UPDATE_NEW_MESSAGE_BODY': {
             const newState: DialogsPageType = {
                 ...state,
                 newMessageBody: action.body,
             };
             return newState;
         }
-        case 'SEND-MESSAGE': {
+        case 'SEND_MESSAGE': {
             const newMessage: MessageType = {
                 id: state.messages.length + 1,
                 message: state.newMessageBody,

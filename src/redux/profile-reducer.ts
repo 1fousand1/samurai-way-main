@@ -13,7 +13,7 @@ let initialState ={
      action: ActionsType): ProfilePageType => {
 
     switch (action.type) {
-        case 'ADD-POST': {
+        case 'ADD_POST': {
             const newPost: PostType = {
                 id: new Date().getTime(),
                 message: state.newPostText,
@@ -26,7 +26,7 @@ let initialState ={
             };
             return newState;
         }
-        case 'UPDATE-NEW-POST-TEXT': {
+        case 'UPDATE_NEW_POST_TEXT': {
             const newState: ProfilePageType = {
                 ...state,
                 newPostText: action.newText

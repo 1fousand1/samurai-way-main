@@ -9,8 +9,8 @@ const Dialogs:React.FC<DialogsPropsType> = (props) => {
 
     const  {dialogs, messages, newMessageBody} = props.dialogsPage;
 
-    const dialogsElements = dialogs.map((d)=><DialogItem name={d.name} id={d.id}/>);
-    const messagesElements = messages.map((m)=> <Message message={m.message}/>)
+    const dialogsElements = dialogs.map((d)=><DialogItem name={d.name} key={d.id} id={d.id}/>);
+    const messagesElements = messages.map((m)=> <Message message={m.message} key={m.id}/>)
     let newMessage = newMessageBody;
 
 

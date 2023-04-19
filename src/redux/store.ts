@@ -7,9 +7,9 @@ export type StoreType = Store<RootState, AnyAction>;
 
 export type ActionsType = ActionTypesProfile | ActionTypesDialogs
 
-type ActionTypesProfile = { type: 'ADD-POST', postText: string } | { type: 'UPDATE-NEW-POST-TEXT'; newText: string };
+type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string };
 
-export type ActionTypesDialogs = { type: 'UPDATE-NEW-MESSAGE-BODY'; body: string } | { type: 'SEND-MESSAGE' };
+export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -47,12 +47,12 @@ export type MessageType = {
 }
 type SidebarType = {}
 
-
-
-export const ADD_POST = 'ADD-POST';
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+//<---------------------------------------------->
+export const ADD_POST = 'ADD_POST';
+export const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 export const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
 export const SEND_MESSAGE = "SEND_MESSAGE";
+//<--------------------------------------------->
 
 /*export const store: StoreType = {
     _state: {
