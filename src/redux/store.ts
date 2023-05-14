@@ -5,17 +5,35 @@ import {AnyAction, Store} from "redux";
 export type StoreType = Store<RootState, AnyAction>;
 
 
-export type ActionsType = ActionTypesProfile | ActionTypesDialogs
+export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers
 
 type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string };
 
 export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
 
+export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users:[]};
+
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    UsersPage: UsersPageType
 
     //sidebar: any ///need to fix any
+}
+export type UsersPageType = {
+    users:UserType[]
+}
+
+export type UserType = {
+    id: number;
+    followed: boolean;
+    fullName: string;
+    location: UserLocationType;
+}
+
+export type UserLocationType = {
+    city: string;
+    country: string;
 }
 
 export type ProfilePageType = {
@@ -129,5 +147,8 @@ export const updateNewMessageBodyCreator = (body: string) => {
         body: body
     } as const
 }
+
+
+
 
 
