@@ -1,13 +1,8 @@
 import {ActionsType, UsersPageType, UserType} from "./store";
 
 
-
 let initialState ={
-    users: [
-        {id: 1, followed:false, fullName: 'Dmitry', status: 'I am a boss', location: {city: 'Minsk', country:'Belarus'}},
-        {id: 1, followed:false, fullName: 'Alexandr', status: 'I am a boss', location: {city: 'Moscow', country:'Russia'}},
-        {id: 1, followed:false, fullName: 'Andrew', status: 'I am a boss', location: {city: 'Kiev', country:'Ukraine'}}
-    ]
+    users: []
 }
 
 
@@ -17,7 +12,7 @@ let initialState ={
 
     switch (action.type) {
         case 'FOLLOW' : {
-            const newState: UsersPageType = {
+            return {
                 ...state,
                 users: state.users.map((u) => {
                     if (u.id === action.userId) {
@@ -26,11 +21,10 @@ let initialState ={
                     return u;
                 })
             }
-            return newState
         }
         case 'UNFOLLOW' :
             {
-                const newState: UsersPageType = {
+                return {
                     ...state,
                     users: state.users.map((u) => {
                         if (u.id === action.userId) {
@@ -39,7 +33,6 @@ let initialState ={
                         return u;
                     })
                 }
-                return newState
             }
             case 'SET_USERS': {
                     return {...state, users: [...state.users,...action.users]}

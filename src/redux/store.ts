@@ -25,16 +25,19 @@ export type UsersPageType = {
 }
 
 export type UserType = {
+    name: string;
     id: number;
+    uniqueUrlName: null;
+    photos: PhotosType;
     followed: boolean;
-    fullName: string;
-    location: UserLocationType;
+    status: string
 }
 
-export type UserLocationType = {
-    city: string;
-    country: string;
+export type PhotosType = {
+    large: string;
+    small: string;
 }
+
 
 export type ProfilePageType = {
     posts: Array<PostType>
