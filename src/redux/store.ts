@@ -11,7 +11,7 @@ type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDA
 
 export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
 
-export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users:[]};
+export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users:[]} | {type: 'SET_CURRENT_PAGE', currentPage: number} | {type: 'SET_TOTAL_USERS_COUNT', totalCount: number};
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -22,6 +22,10 @@ export type RootStateType = {
 }
 export type UsersPageType = {
     users:UserType[]
+    pageSize: number///
+    totalUsersCount: number ///
+    currentPage: number
+    totalCount: number
 }
 
 export type UserType = {
