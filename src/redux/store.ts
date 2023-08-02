@@ -7,7 +7,7 @@ export type StoreType = Store<RootState, AnyAction>;
 
 export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers
 
-type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string };
+type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string } | {type: 'SET_USER_PROFILE', profile: ProfileType | null };
 
 export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
 
@@ -47,7 +47,29 @@ export type PhotosType = {
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
+    profile: null | ProfileType
 }
+
+export type ProfileType = {
+    photos: PhotosType
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob:boolean
+    lookingForAJobDescription:string
+    fullName:string
+}
+
+export type ContactsType = {
+    github: string,
+    vk: string,
+    facebook: string,
+    instagram: string,
+    twitter: string,
+    website: string,
+    youtube: string,
+    mainLink: string,
+}
+
 
 export type DialogsPageType = {
     dialogs: Array<DialogType>

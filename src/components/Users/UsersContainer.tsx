@@ -40,7 +40,7 @@ type MapDispatchPropsType = {
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
 
-export class UsersAPIContainer extends React.Component<UsersPropsType> {
+export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
@@ -122,6 +122,6 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+const usersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
 
-export default UsersContainer;
+export default usersContainer;
