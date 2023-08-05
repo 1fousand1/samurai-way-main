@@ -9,9 +9,13 @@ import {setUserProfileAC} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 
 export class ProfileContainer extends React.Component<withRouterPropsType> {
+
     componentDidMount() {
-        //let profileId = this.props.router.params.profileId
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = "2"
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfile(response.data);
 
@@ -29,7 +33,7 @@ export class ProfileContainer extends React.Component<withRouterPropsType> {
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
 type PathParamsType = {
-    userId:string
+    userId: string
 }
 
 export type withRouterPropsType = RouteComponentProps<PathParamsType> & ProfileContainerPropsType
