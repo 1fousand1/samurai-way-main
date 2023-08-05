@@ -5,13 +5,15 @@ import {AnyAction, Store} from "redux";
 export type StoreType = Store<RootState, AnyAction>;
 
 
-export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers
+export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers | ActionTypesAuth
 
 type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string } | {type: 'SET_USER_PROFILE', profile: ProfileType | null };
 
 export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
 
 export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users:[]} | {type: 'SET_CURRENT_PAGE', currentPage: number} | {type: 'SET_TOTAL_USERS_COUNT', totalCount: number} | {type: 'TOGGLE_IS_FETCHING', isFetching: boolean};
+
+export type ActionTypesAuth = {type: 'SET_USER_DATA', data: {userId: number, email: string, login: string}}
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -20,10 +22,17 @@ export type RootStateType = {
 
     //sidebar: any ///need to fix any
 }
+export type authType = {
+    userId: number | null,
+    email: string | null,
+    login: string | null,
+    isFetching?: boolean
+} ////
+
 export type UsersPageType = {
     users:UserType[]
-    pageSize: number///
-    totalUsersCount: number ///
+    pageSize: number
+    totalUsersCount: number
     currentPage: number
     totalCount: number
     isFetching: boolean
