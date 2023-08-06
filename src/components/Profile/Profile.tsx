@@ -1,12 +1,11 @@
 import React from "react";
 import ProfileInfo from "./Profileinfo/ProfileInfo";
 import {MyPostContainer} from "./MyPosts/MyPostsContainer";
-import {ProfileContainerPropsType, withRouterPropsType} from "./ProfileContainer";
-
-
+import {withRouterPropsType} from "./ProfileContainer";
 
 
 export const Profile = (props: withRouterPropsType) => {
+
     return (
         <div>
             <ProfileInfo profile={props.profile} />

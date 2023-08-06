@@ -13,7 +13,7 @@ export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string
 
 export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users:[]} | {type: 'SET_CURRENT_PAGE', currentPage: number} | {type: 'SET_TOTAL_USERS_COUNT', totalCount: number} | {type: 'TOGGLE_IS_FETCHING', isFetching: boolean};
 
-export type ActionTypesAuth = {type: 'SET_USER_DATA', data: {userId: number, email: string, login: string}}
+export type ActionTypesAuth = {type: 'SET_USER_DATA', data: {userId: string, email: string, login: string}}
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -22,12 +22,14 @@ export type RootStateType = {
 
     //sidebar: any ///need to fix any
 }
-export type authType = {
-    userId: number | null,
-    email: string | null,
-    login: string | null,
-    isFetching?: boolean
-} ////
+export type AuthType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+
+
+}
 
 export type UsersPageType = {
     users:UserType[]
