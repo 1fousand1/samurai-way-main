@@ -6,7 +6,6 @@ import {HeaderContainerPropsType} from "./HeaderContainer";
 
 
 export const Header = (props:HeaderContainerPropsType) => {
-    debugger
     return(
             <header className={s.header}>
                 <img alt ="logo" src='https://upload.wikimedia.org/wikipedia/commons/1/1e/RPC-JP_Logo.png'/>
