@@ -1,4 +1,7 @@
 import {ActionsType, UsersPageType, UserType} from "./store";
+import {ThunkDispatch} from "redux-thunk";
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 
 let initialState = {
@@ -66,16 +69,43 @@ const usersReducer = (
             return state;
     }
 }
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId: userId})
-export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId: userId})
-export const setUsersAC = (users: UserType[]) => ({type: 'SET_USERS', users: users})
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage: currentPage})
-export const setTotalUsersCountAC = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount: totalCount})
-export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching: isFetching})
+export const followAC = (userId: number) => ({type: 'FOLLOW', userId: userId} as const)
+export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId: userId} as const)
+export const setUsersAC = (users: UserType[]) => ({
+    type: 'SET_USERS',
+    users,
+} as const);
+export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage: currentPage} as const)
+export const setTotalUsersCountAC = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount: totalCount} as const)
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching: isFetching} as const);
 export const toggleFollowingProgressAC = (isFetching: boolean, userId: number) => ({
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
-    isFetching: isFetching,
-    userId: userId,
-});
+    isFetching,
+    userId,
+} as const);
+
+
+type ThunkResult<R> = (dispatch: Dispatch) => R;
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkResult<void>  => {
+   return (dispatch) => {
+        dispatch(toggleIsFetchingAC(true))
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetchingAC(false))
+            dispatch(setUsersAC(data.items));
+            dispatch(setTotalUsersCountAC(data.totalCount))
+        });
+    }
+}
 
 export default usersReducer;
+
+
+
+
+
+
+
+
+
+
