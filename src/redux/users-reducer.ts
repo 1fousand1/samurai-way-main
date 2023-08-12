@@ -91,10 +91,39 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
    return (dispatch) => {
         dispatch(toggleIsFetchingAC(true))
         usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setCurrentPageAC(currentPage))
             dispatch(toggleIsFetchingAC(false))
             dispatch(setUsersAC(data.items));
             dispatch(setTotalUsersCountAC(data.totalCount))
         });
+    }
+}
+
+
+export const followTC = (userId: number): ThunkResult<void> => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgressAC(true, userId));
+        usersAPI.followUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(userId));
+                }
+                dispatch(toggleFollowingProgressAC(false, userId))
+            });
+
+    }
+}
+export const unfollowTC = (userId: number): ThunkResult<void> => {
+    return (dispatch) => {
+        dispatch(toggleFollowingProgressAC(true, userId));
+        usersAPI.unfollowUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(userId));
+                }
+                dispatch(toggleFollowingProgressAC(false, userId))
+            });
+
     }
 }
 
