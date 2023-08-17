@@ -3,17 +3,11 @@ import React from 'react';
 import {connect} from "react-redux";
 import {ActionsType, UsersPageType} from "../../redux/store";
 import {ReduxStateType} from "../../redux/redux-store";
-import {
-    followAC,
-    followTC,
-    getUsersThunkCreator,
-    setCurrentPageAC,
-    unfollowAC,
-    unfollowTC
-} from "../../redux/users-reducer";
+import {followTC, getUsersThunkCreator, setCurrentPageAC, unfollowTC} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {ThunkDispatch} from "redux-thunk";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 type MapStatePropsType = {
@@ -102,6 +96,6 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<ReduxStateType, undefined, Act
     }
 }
 
-const usersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
 
-export default usersContainer;
+
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(UsersContainer))

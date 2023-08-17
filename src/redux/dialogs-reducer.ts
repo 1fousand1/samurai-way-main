@@ -17,7 +17,8 @@ const initialState = {
     {id: 4, message: 'Yo'},
     {id: 5, message: 'YO'}
 ],
-    newMessageBody: ""
+    newMessageBody: "",
+    isAuth: false
 }
 
 

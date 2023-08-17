@@ -1,8 +1,8 @@
-import {RootState} from "./redux-store";
+import {ReducersType} from "./redux-store";
 import {AnyAction, Store} from "redux";
 
 
-export type StoreType = Store<RootState, AnyAction>;
+export type StoreType = Store<ReducersType, AnyAction>;
 
 
 export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers | ActionTypesAuth
@@ -19,9 +19,8 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     UsersPage: UsersPageType
-
-    //sidebar: any ///need to fix any
 }
+
 export type AuthType = {
     id: number | null
     email: string | null
@@ -87,6 +86,7 @@ export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageBody: string
+    isAuth: boolean
 }
 
 export type PostType = {

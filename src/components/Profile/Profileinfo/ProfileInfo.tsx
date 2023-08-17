@@ -9,12 +9,9 @@ type ProfileInfoPropsType = {
 const ProfileInfo = (props: ProfileInfoPropsType) => {
     return (
         <div>
-            <div>
-                <img src="https://of-crimea.ru/plug/Peschanye-plyazhi-Kryma.jpg"/>
-            </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile?.photos.large} />
-                ava + description
+                description
             </div>
         </div>
     );

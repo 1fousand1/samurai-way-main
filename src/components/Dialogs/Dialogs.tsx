@@ -3,14 +3,15 @@ import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./Dialogitem/Dialogitem";
 import {DialogsPropsType} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
 
-const Dialogs:React.FC<DialogsPropsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    const  {dialogs, messages, newMessageBody} = props.dialogsPage;
+    const {dialogs, messages, newMessageBody} = props.dialogsPage;
 
-    const dialogsElements = dialogs.map((d)=><DialogItem name={d.name} key={d.id} id={d.id}/>);
-    const messagesElements = messages.map((m)=> <Message message={m.message} key={m.id}/>)
+    const dialogsElements = dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id}/>);
+    const messagesElements = messages.map((m) => <Message message={m.message} key={m.id}/>)
     let newMessage = newMessageBody;
 
 
@@ -34,7 +35,9 @@ const Dialogs:React.FC<DialogsPropsType> = (props) => {
                     onChange={onNewMessageChange}
                     value={newMessageBody}
                     placeholder="Enter your message"></textarea></div>
-                <div><button onClick={onSendMessageClick}>Send</button></div>
+                <div>
+                    <button onClick={onSendMessageClick}>Send</button>
+                </div>
             </div>
 
 
