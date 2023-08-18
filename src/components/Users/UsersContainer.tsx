@@ -8,6 +8,7 @@ import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {ThunkDispatch} from "redux-thunk";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 type MapStatePropsType = {
@@ -96,6 +97,6 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<ReduxStateType, undefined, Act
     }
 }
 
+export default compose<React.ComponentType>(withAuthRedirect,connect(mapStateToProps, mapDispatchToProps))(UsersContainer)
 
 
-export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(UsersContainer))

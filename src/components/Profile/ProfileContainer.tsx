@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {ReduxStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {ProfileType} from "../../redux/store";
 import {setUserProfileAC} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
@@ -67,8 +67,9 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
+export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withAuthRedirect)
+    (ProfileContainer);
 
-const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
-
-export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent))
 
