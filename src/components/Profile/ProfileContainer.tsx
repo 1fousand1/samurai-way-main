@@ -31,9 +31,6 @@ export class ProfileContainer extends React.Component<withRouterPropsType> {
 
 }
 
-const AuthRedirectComponent = (props: withRouterPropsType) => {
-    return <ProfileContainer {...props}/>
-}
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
