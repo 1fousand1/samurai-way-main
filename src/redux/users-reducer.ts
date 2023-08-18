@@ -119,7 +119,7 @@ export const unfollowTC = (userId: number): ThunkResult<void> => {
         usersAPI.unfollowUser(userId)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(followAC(userId));
+                    dispatch(unfollowAC(userId));
                 }
                 dispatch(toggleFollowingProgressAC(false, userId))
             });

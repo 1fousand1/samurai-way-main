@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {connect} from "react-redux";
 import {ActionsType, UsersPageType} from "../../redux/store";
 import {ReduxStateType} from "../../redux/redux-store";

@@ -3,7 +3,6 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UsersPropsType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
-import {followTC, unfollowTC} from "../../redux/users-reducer";
 
 interface UsersProps extends UsersPropsType {
     onPageChanged: (pageNumber: number) => void;

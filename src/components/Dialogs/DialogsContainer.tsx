@@ -23,7 +23,7 @@ let mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch ): MapDispatchPropsType => { //changedTypeFromAnyToDispatch
+let mapDispatchToProps = (dispatch: Dispatch ): MapDispatchPropsType => {
     return {
         updateNewMessageBody: (body:any) => {
             dispatch(updateNewMessageBodyCreator(body));
