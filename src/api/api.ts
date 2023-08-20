@@ -1,6 +1,28 @@
 import axios from "axios";
 
 
+export type userProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string
+        github: string
+        mainLink: string
+    }
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
+
 const instance = axios.create({
     baseURL:'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true
@@ -32,19 +54,18 @@ export const usersAPI = {
 
 export const profileAPI = {
     getProfile(userId: number){
-        return instance.get(`profile/${userId}`)
+        return instance.get<userProfileType>(`profile/${userId}`)
     },
     getStatus(userId: number){
         return instance.get(`status/${userId}`)
 
     },
     updateStatus(status: string){
-        return instance.put(`status`)
+        return instance.put(`status`, {status: status})
 
     }
 
 }
-
 
 
 

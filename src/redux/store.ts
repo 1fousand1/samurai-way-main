@@ -7,7 +7,7 @@ export type StoreType = Store<ReducersType, AnyAction>;
 
 export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers | ActionTypesAuth
 
-type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string } | {type: 'SET_USER_PROFILE', profile: ProfileType | null };
+type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string } | {type: 'SET_USER_PROFILE', profile: ProfileType | null } | {type: "SET_STATUS", status: string};
 
 export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
 
@@ -59,6 +59,7 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
     profile: null | ProfileType
+    status: string
 }
 
 export type ProfileType = {

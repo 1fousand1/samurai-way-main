@@ -5,7 +5,6 @@ import {withRouterPropsType} from "./ProfileContainer";
 
 
 export const Profile = (props: withRouterPropsType) => {
-
     return (
         <div>
             <ProfileInfo profile={props.profile} />
