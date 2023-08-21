@@ -63,16 +63,16 @@ export const setUserProfileTC = (userId: number) => (dispatch: Dispatch) => {
 export const setUserStatusAC = (status: string) => ({type: "SET_STATUS", status})
 
 export const getUserStatusTC = (userId: number): ThunkResult<void> => (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
+    profileAPI.getUserStatus(userId).then(response => {
         dispatch(setUserStatusAC(response.data))
     })
 }
 
 export const updateUserStatusTC = (status: string): ThunkResult<void> => (dispatch) => {
-    profileAPI.updateStatus(status)
+    profileAPI.updateUserStatus(status)
         .then(response => {
         if (response.data.resultCode === 0) {
-            dispatch(setUserStatusAC(response.data))
+            dispatch(setUserStatusAC(status))
         }
 
     })

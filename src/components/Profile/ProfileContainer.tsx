@@ -21,6 +21,7 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     setUserProfile: (userId: number) => void
     getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
 }
 
 type PathParamsType = {
@@ -35,17 +36,16 @@ export class ProfileContainer extends React.Component<withRouterPropsType> {
     componentDidMount() {
         let userId = Number(this.props.match.params.userId)
         if (!userId) {
-            userId = 2
+            userId = 28521;
         }
         this.props.setUserProfile(userId)
         this.props.getUserStatus(userId)
-
 
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateUserStatus={this.props.updateUserStatus}/>
         )
     }
 
@@ -68,7 +68,7 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<ReduxStateType, undefined, Act
             dispatch(getUserStatusTC(userId))
 
         },
-        updateStatus: (status: string) => {
+        updateUserStatus: (status: string) => {
             dispatch(updateUserStatusTC(status))
         }
     }

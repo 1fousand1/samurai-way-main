@@ -5,6 +5,7 @@ import s from './Post.module.css';
 type PostTypeProps ={
     message: string,
     likesCount: number
+    id: number
 }
 
 export function Post(props:PostTypeProps){
