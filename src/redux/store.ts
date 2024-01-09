@@ -9,7 +9,7 @@ export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesU
 
 type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string } | {type: 'SET_USER_PROFILE', profile: ProfileType | null } | {type: "SET_STATUS", status: string};
 
-export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE' };
+export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE', newMessageBody: string };
 
 export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users: UserType[]} | {type: 'SET_CURRENT_PAGE', currentPage: number} | {type: 'SET_TOTAL_USERS_COUNT', totalCount: number} | {type: 'TOGGLE_IS_FETCHING', isFetching: boolean} | {type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching: boolean, userId: number};
 
@@ -178,18 +178,7 @@ export const updateNewPostTextActionCreator = (newText: string) => {
     } as const
 }
 
-export const sendMessageCreator = () => {
-    return {
-        type: SEND_MESSAGE as typeof SEND_MESSAGE
-    } as const
-}
 
-export const updateNewMessageBodyCreator = (body: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY as typeof UPDATE_NEW_MESSAGE_BODY,
-        body: body
-    } as const
-}
 
 
 
