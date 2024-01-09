@@ -1,4 +1,4 @@
-import {ActionsType, DialogsPageType, MessageType} from "./store";
+import {ActionsType, DialogsPageType, MessageType, SEND_MESSAGE, UPDATE_NEW_MESSAGE_BODY} from "./store";
 
 
 const initialState = {
@@ -21,8 +21,6 @@ const initialState = {
     isAuth: false
 }
 
-
-
 const dialogsReducer = (
     state: DialogsPageType = initialState,
     action: ActionsType
@@ -38,12 +36,11 @@ const dialogsReducer = (
         case 'SEND_MESSAGE': {
             const newMessage: MessageType = {
                 id: state.messages.length + 1,
-                message: state.newMessageBody,
+                message: action.newMessageBody,
             };
             const newState: DialogsPageType = {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newMessageBody: '',
             };
             return newState;
         }
@@ -51,5 +48,19 @@ const dialogsReducer = (
             return state;
     }
 };
+
+export const sendMessageCreator = (newMessageBody: string) => {
+    return {
+        type: SEND_MESSAGE as typeof SEND_MESSAGE,
+        newMessageBody: newMessageBody
+    } as const
+}
+
+export const updateNewMessageBodyCreator = (body: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_BODY as typeof UPDATE_NEW_MESSAGE_BODY,
+        body: body
+    } as const
+}
 
 export default dialogsReducer;

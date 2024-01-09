@@ -1,25 +1,25 @@
-import React, {FC} from 'react';
-import {DialogsPropsType} from "./../DialogsContainer";
-import {InjectedFormProps} from "redux-form";
+import React from 'react';
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
+export type FormDataType = {
+    newMessageBody: string
+}
 
-export const AddMessageForm: FC<InjectedFormProps<sendMessageFormDataType> & sendMessageExtendsFormDataType>= (props) => {
+/*const maxLengthText = maxLengthCreator(50)*/
 
-
+export const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
-        <form >
-            <div><textarea
-                onChange={onNewMessageChange}
-                value={newMessage}
-                placeholder="Enter your message"></textarea></div>
-            <div>
-                <button onClick={onSendMessageClick}>Send</button>
-            </div>
-        </form>
+                <form onSubmit={props.handleSubmit}>
+                    <div>
+                    <Field
+                        component="textarea"
+                        placeholder="Enter your Message"
+                        name="newMessageBody"
+                    />
+                    <button>Send</button>
+                    </div>
+                </form>
     );
 };
 
-
-
-
-export default AddMessageForm;
+export const DialogsFormRedux = reduxForm<FormDataType>({form: 'dialogsForm'})(AddMessageForm)
