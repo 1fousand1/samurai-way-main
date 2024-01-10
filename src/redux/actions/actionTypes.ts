@@ -9,7 +9,7 @@ export const SEND_MESSAGE = "SEND_MESSAGE";
 
 export type ActionsType = ActionTypesProfile | ActionTypesDialogs | ActionTypesUsers | ActionTypesAuth
 
-type ActionTypesProfile = { type: 'ADD_POST', postText: string } | { type: 'UPDATE_NEW_POST_TEXT'; newText: string } | {type: 'SET_USER_PROFILE', profile: ProfileType | null } | {type: "SET_STATUS", status: string};
+type ActionTypesProfile = { type: 'ADD_POST', newPostText: string }| {type: 'SET_USER_PROFILE', profile: ProfileType | null } | {type: "SET_STATUS", status: string};
 
 export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string } | { type: 'SEND_MESSAGE', newMessageBody: string };
 
