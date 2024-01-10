@@ -3,11 +3,12 @@ import {connect} from "react-redux";
 import {Profile} from "./Profile";
 import {ReduxStateType} from "../../redux/redux-store";
 import {compose} from "redux";
-import {ActionsType, ProfileType} from "../../redux/store";
 import {getUserStatusTC, setUserProfileTC, updateUserStatusTC} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {ThunkDispatch} from "redux-thunk";
+import {ProfileType} from "../../types/profilePageTypes";
+import {ActionsType} from "../../redux/actions/actionTypes";
 
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
@@ -54,8 +55,8 @@ export class ProfileContainer extends React.Component<withRouterPropsType> {
 
 let mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
     return {
-        profile: state.profileReducer.profile,
-        status: state.profileReducer.status
+        profile: state.profilePage.profile,
+        status: state.profilePage.status
     }
 }
 

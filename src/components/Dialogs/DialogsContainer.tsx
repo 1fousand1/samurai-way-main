@@ -1,11 +1,12 @@
 import React from 'react';
-import {DialogsPageType,} from "../../redux/store";
+
 import {connect} from "react-redux";
 import Dialogs from "./Dialogs";
 import {ReduxStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../types/dialogsPageTypes";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/actions/dialogsActions";
 
 type MapStatePropsType = {
     dialogsPage: DialogsPageType
@@ -20,7 +21,7 @@ export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
 let mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsReducer
+        dialogsPage: state.dialogsPage
     }
 }
 

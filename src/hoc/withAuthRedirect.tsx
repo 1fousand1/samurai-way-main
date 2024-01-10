@@ -10,7 +10,7 @@ type MapStatePropsType = {
 
 const mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
     return {
-        isAuth: state.authReducer.isAuth
+        isAuth: state.auth.isAuth
     }
 
 }

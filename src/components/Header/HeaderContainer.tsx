@@ -1,11 +1,10 @@
 import React from "react";
 import {Header} from "./Header";
-import axios from "axios";
 import {ReduxStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
-import {setAuthUserDataAC} from "../../redux/auth-reducer";
 import {authAPI} from "../../api/api";
+import {setAuthUserDataAC} from "../../redux/actions/authAction";
 
 export type HeaderContainerPropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -41,8 +40,8 @@ class HeaderContainer extends React.Component<HeaderContainerPropsType> {
 
 let mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
     return {
-        isAuth: state.authReducer.isAuth,
-        login: state.authReducer.login
+        isAuth: state.auth.isAuth,
+        login: state.auth.login
     }
 }
 
