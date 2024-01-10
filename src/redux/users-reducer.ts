@@ -1,7 +1,8 @@
-import {ActionsType, UsersPageType, UserType} from "./store";
-import {ThunkDispatch} from "redux-thunk";
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {UserType} from "../types/usersTypes";
+import {UsersPageType} from "../types/usersPageType";
+import {ActionsType} from "./actions/actionTypes";
 
 
 let initialState = {

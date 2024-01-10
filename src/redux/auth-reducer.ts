@@ -1,4 +1,5 @@
-import {ActionsType, AuthType} from "./store";
+import {AuthType} from "./actions/authAction";
+import {ActionsType} from "./actions/actionTypes";
 
 
 let initialState = {
@@ -24,7 +25,7 @@ const authReducer = (
             return state;
     }
 }
-export const setAuthUserDataAC = (id: number | null, email: string | null, login: string | null) => ({type: 'SET_USER_DATA', data: {id: id, email: email, login: login} })
+
 
 
 export default authReducer;

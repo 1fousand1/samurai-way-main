@@ -1,6 +1,7 @@
-import {ActionsType, PostType, ProfilePageType, ProfileType} from "./store";
 import {profileAPI, usersAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {PostType, ProfilePageType, ProfileType} from "../types/profilePageTypes";
+import {ActionsType} from "./actions/actionTypes";
 
 
 let initialState ={
