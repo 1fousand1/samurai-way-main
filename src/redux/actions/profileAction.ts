@@ -1,9 +1,9 @@
 import {ADD_POST, UPDATE_NEW_POST_TEXT} from "./actionTypes";
 
-export const addPostActionCreator = (postText: string) => {
+export const addPostActionCreator = (newPostText: string) => {
     return {
         type: ADD_POST as typeof ADD_POST,
-        postText: postText
+        newPostText: newPostText
     } as const
 }
 
