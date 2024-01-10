@@ -11,10 +11,10 @@ export type ReducersType = typeof reducer
 export type ReduxStateType = ReturnType<ReducersType>
 
 const reducer = combineReducers({
-     profileReducer,
-     dialogsReducer,
-     usersReducer,
-     authReducer,
+     profilePage: profileReducer,
+     dialogsPage: dialogsReducer,
+     usersPage: usersReducer,
+     auth: authReducer,
      form: formReducer
 });
 
