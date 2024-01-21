@@ -17,13 +17,6 @@ export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
 
     }
 
-/*    let onPostChange = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.updateNewPostText(text)
-
-        }
-    }*/
 
 
     return (
