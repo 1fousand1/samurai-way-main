@@ -15,4 +15,4 @@ export type ActionTypesDialogs = { type: 'UPDATE_NEW_MESSAGE_BODY'; body: string
 
 export type ActionTypesUsers = {type: 'FOLLOW', userId:number} | { type: 'UNFOLLOW'; userId:number} | {type :'SET_USERS', users: UserType[]} | {type: 'SET_CURRENT_PAGE', currentPage: number} | {type: 'SET_TOTAL_USERS_COUNT', totalCount: number} | {type: 'TOGGLE_IS_FETCHING', isFetching: boolean} | {type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching: boolean, userId: number};
 
-export type ActionTypesAuth = {type: 'SET_USER_DATA', data: {userId: string, email: string, login: string}}
+export type ActionTypesAuth = {type: 'SET_USER_DATA', payload: {userId: string, email: string, login: string}}
