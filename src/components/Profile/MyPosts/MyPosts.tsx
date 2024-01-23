@@ -17,8 +17,6 @@ export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
 
     }
 
-
-
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
