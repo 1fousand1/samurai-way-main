@@ -7,3 +7,10 @@
 .errorMessage {
     color: red;
 }
+
+.formSummaryError {
+    color: red;
+    border: red 1px solid;
+    padding: 5px;
+    max-width: 155px;
+}
