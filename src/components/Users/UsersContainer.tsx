@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {followTC, getUsersThunkCreator, setCurrentPageAC, unfollowTC} from "../../redux/users-reducer";
+import {followTC, getUsersThunkCreator, setCurrentPageAC, unfollowTC} from "../../redux/reducers/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {ThunkDispatch} from "redux-thunk";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-import {ActionsType} from "../../redux/actions/actionTypes";
 import {UsersPageType} from "../../types/usersPageType";
+import {ActionsType} from "../../redux/actions/actionCreatorTypes";
 
 
 type MapStatePropsType = {
