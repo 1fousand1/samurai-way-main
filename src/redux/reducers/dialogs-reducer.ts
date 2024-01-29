@@ -1,5 +1,5 @@
-import {DialogsPageType, MessageType} from "../types/dialogsPageTypes";
-import {ActionsType} from "./actions/actionTypes";
+import {DialogsPageType, MessageType} from "../../types/dialogsPageTypes";
+import {ActionsType} from "../actions/actionCreatorTypes";
 
 
 

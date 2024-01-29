@@ -1,8 +1,8 @@
-import {usersAPI} from "../api/api";
+import {usersAPI} from "../../api/api";
 import {Dispatch} from "redux";
-import {UserType} from "../types/usersTypes";
-import {UsersPageType} from "../types/usersPageType";
-import {ActionsType} from "./actions/actionTypes";
+import {UserType} from "../../types/usersTypes";
+import {UsersPageType} from "../../types/usersPageType";
+import {ActionsType} from "../actions/actionCreatorTypes";
 
 
 let initialState = {

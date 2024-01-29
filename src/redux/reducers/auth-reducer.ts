@@ -1,7 +1,8 @@
-import {AuthType} from "./actions/authAction";
-import {ActionsType} from "./actions/actionTypes";
-import {authAPI} from "../api/api";
+import {AuthType} from "../actions/authAction";
+import {authAPI} from "../../api/api";
 import {Dispatch} from "redux";
+import {stopSubmit} from "redux-form";
+import {ActionsType} from "../actions/actionCreatorTypes";
 
 
 let initialState = {
@@ -44,6 +45,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+                dispatch(stopSubmit("login", { _error: message}))
             }
         })
 }
