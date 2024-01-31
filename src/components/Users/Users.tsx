@@ -29,7 +29,7 @@ export const Users = (props: UsersProps) => {
 
         </div>
         {
-            props.usersPage.users.map((user) =>
+            props.users.map((user) =>
                 <div key={user.id}>
                         <span>
                             <div>
