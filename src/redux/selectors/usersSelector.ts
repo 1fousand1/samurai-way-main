@@ -1,8 +1,15 @@
 import {ReduxStateType} from "../redux-store";
+import {createSelector} from "reselect";
 
-export const getUsers = (state: ReduxStateType) => {
+const getUsersSelector = (state: ReduxStateType) => {
     return state.usersPage.users
 }
+
+
+export const getUsers = createSelector(getUsersSelector, (users)=>{
+    return users.filter(u => true)
+})
+
 
 export const getPageSize = (state: ReduxStateType) => {
     return state.usersPage.pageSize
