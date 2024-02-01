@@ -7,10 +7,10 @@ import {Preloader} from "../common/Preloader/Preloader";
 import {ThunkDispatch} from "redux-thunk";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-import {UsersPageType} from "../../types/usersPageType";
 import {ActionsType} from "../../redux/actions/actionCreatorTypes";
 import {
-    getCurrentPage, getFollowingInProgress,
+    getCurrentPage,
+    getFollowingInProgress,
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
