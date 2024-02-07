@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 
 type ProfileStatusPropsType = {
@@ -12,6 +12,10 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
 
     let [editMode, setEditMode] = useState(false);
     let [localStatus, setLocalStatus] = useState(status);
+
+    useEffect(()=>{
+        setLocalStatus(status)
+    },[status]);
 
     const onUpdateStatusChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setLocalStatus(e.currentTarget.value)
