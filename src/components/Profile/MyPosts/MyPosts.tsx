@@ -5,9 +5,9 @@ import {MyPostsPropsType} from "./MyPostsContainer";
 import {FormDataType, PostFormRedux} from "./Post/PostForm";
 
 
-export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
+export const MyPosts:React.FC<MyPostsPropsType> = React.memo((props) => {
 
-
+    console.log("RENDER")
     let postsElements = props.posts.map((p) => <Post id={p.id} message={p.message} likesCount={p.likesCount} key={p.id}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -26,5 +26,5 @@ export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
             </div>
         </div>
     )
-}
+})
 
