@@ -1,5 +1,7 @@
 import {DialogsPageType, MessageType} from "../../types/dialogsPageTypes";
 import {ActionsType} from "../actions/actionCreatorTypes";
+import {DIALOGS_SEND_MESSAGE, DIALOGS_UPDATE_NEW_MESSAGE_BODY} from "../actions/actionTypes";
+import {DialogsActionType} from "../actions/dialogsActions";
 
 
 
@@ -25,17 +27,17 @@ const initialState = {
 
 const dialogsReducer = (
     state: DialogsPageType = initialState,
-    action: ActionsType
+    action: DialogsActionType
 ): DialogsPageType => {
     switch (action.type) {
-        case 'UPDATE_NEW_MESSAGE_BODY': {
+        case DIALOGS_UPDATE_NEW_MESSAGE_BODY: {
             const newState: DialogsPageType = {
                 ...state,
                 newMessageBody: action.body,
             };
             return newState;
         }
-        case 'SEND_MESSAGE': {
+        case DIALOGS_SEND_MESSAGE: {
             const newMessage: MessageType = {
                 id: state.messages.length + 1,
                 message: action.newMessageBody,

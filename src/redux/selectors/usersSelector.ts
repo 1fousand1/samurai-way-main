@@ -24,7 +24,7 @@ export const getCurrentPage = (state: ReduxStateType) => {
 }
 
 export const getIsFetching = (state: ReduxStateType) => {
-    return state.usersPage.isFetching
+    return state.usersPage.isLoading
 }
 
 export const getFollowingInProgress = (state: ReduxStateType) => {

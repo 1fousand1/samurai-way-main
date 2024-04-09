@@ -3,10 +3,10 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validtors";
 import {connect} from "react-redux";
-import {loginTC} from "../../redux/reducers/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {ReduxStateType} from "../../redux/redux-store";
 import style from "../common/FormsControl/FormsControls.module.css"
+import {loginTC} from "../../redux/thunks/authThunk";
 
 
 type FormDataType = {
@@ -50,6 +50,7 @@ const Login: React.FC<LoginType> = (props) => {
     }
 
     if (isAuth) {
+        debugger
         return <Redirect to={"/profile"}/>
     }
     return (

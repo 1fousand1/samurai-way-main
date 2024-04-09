@@ -1,6 +1,7 @@
 import {AppThunkDispatch, AppThunkType} from "../redux-store";
 import {setAppInitializedAC} from "../actions/appAction";
-import {getAuthUserData} from "../reducers/auth-reducer";
+import {getAuthUserData} from "./authThunk";
+
 
 export const initializeTC = (): AppThunkType => async (dispatch: AppThunkDispatch
 ) => {

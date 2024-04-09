@@ -4,7 +4,7 @@ import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../../redux/redux-store";
 import {PostType} from "../../../types/profilePageTypes";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/actions/profileAction";
+import {addPostActionCreator} from "../../../redux/actions/profileAction";
 
 
 type MapStatePropsType = {

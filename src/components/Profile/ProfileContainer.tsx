@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 import {Profile} from "./Profile";
 import {ReduxStateType} from "../../redux/redux-store";
 import {compose} from "redux";
-import {getUserStatusTC, setUserProfileTC, updateUserStatusTC} from "../../redux/reducers/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {ThunkDispatch} from "redux-thunk";
 import {ProfileType} from "../../types/profilePageTypes";
 import {ActionsType} from "../../redux/actions/actionCreatorTypes";
+import {getUserStatusTC, setUserProfileTC, updateUserStatusTC} from "../../redux/thunks/profileThunk";
 
 
 

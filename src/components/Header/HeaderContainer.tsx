@@ -2,7 +2,8 @@ import React from "react";
 import {Header} from "./Header";
 import {ReduxStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {getAuthUserData, logoutTC} from "../../redux/reducers/auth-reducer";
+import {logoutTC} from "../../redux/thunks/authThunk";
+
 
 export type HeaderContainerPropsType = MapStatePropsType & MapDispatchPropsType
 

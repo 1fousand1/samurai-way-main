@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {followTC, getUsersThunkCreator, setCurrentPageAC, unfollowTC} from "../../redux/reducers/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {ThunkDispatch} from "redux-thunk";
@@ -17,6 +16,8 @@ import {
     getUsers
 } from "../../redux/selectors/usersSelector";
 import {UserType} from "../../types/usersTypes";
+import {followTC, getUsersTC, unfollowTC} from "../../redux/thunks/usersThunks";
+import {setCurrentPageAC} from "../../redux/actions/usersAction";
 
 
 type MapStatePropsType = {
@@ -100,7 +101,7 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<ReduxStateType, undefined, Act
             dispatch(setCurrentPageAC(currentPage))
         },
         requestUsers: (currentPage: number, pageSize: number) => {
-            dispatch(getUsersThunkCreator(currentPage, pageSize))
+            dispatch(getUsersTC(currentPage, pageSize))
         }
 
     }
