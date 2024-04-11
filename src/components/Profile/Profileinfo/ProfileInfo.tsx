@@ -11,13 +11,13 @@ type ProfileInfoPropsType = {
 
 }
 
-const ProfileInfo = (props: ProfileInfoPropsType) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus}) => {
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={props.profile?.photos.large} />
-                <p>{props.profile?.fullName}</p>
-                <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
+                <img src={profile?.photos.large} />
+                <p>{profile?.fullName}</p>
+                <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
             </div>
         </div>
     );
