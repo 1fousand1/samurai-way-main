@@ -80,3 +80,9 @@ export const authAPI = {
         return instance.delete(`auth/login`)
     }
 }
+
+
+export enum ResultCode {
+    SUCCESS = 0,
+    ERROR = 1
+}
