@@ -4,38 +4,25 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC, setUsersFollowingAC,
-    setUsersIsLoadingAC, unfollowAC
+    setUsersAC, setUsersLoadingAC, unfollowAC
 } from "../actions/usersAction";
+import {followUnfollow} from "../../utils/followUnfollow/followUnfollow";
 
 type ThunkResult<R> = (dispatch: Dispatch) => R;
 
 export const getUsersTC = (currentPage: number, pageSize: number): ThunkResult<void> => async (dispatch: Dispatch) => {
-    dispatch(setUsersIsLoadingAC(true))
+    dispatch(setUsersLoadingAC(true))
     dispatch(setCurrentPageAC(currentPage))
 
     const data = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(setUsersIsLoadingAC(false))
+    dispatch(setUsersLoadingAC(false))
     dispatch(setUsersAC(data.items));
     dispatch(setTotalUsersCountAC(data.totalCount))
 }
 
-
 export const followTC = (userId: number): ThunkResult<void> => async (dispatch: Dispatch) => {
-    dispatch(setUsersFollowingAC(true, userId));
-    let data = await usersAPI.followUser(userId)
-    if (data.resultCode === 0) {
-        dispatch(followAC(userId));
-    }
-    dispatch(setUsersFollowingAC(false, userId))
-
+    await followUnfollow(dispatch, userId, usersAPI.followUser.bind(usersAPI), followAC)
 }
 export const unfollowTC = (userId: number): ThunkResult<void> => async (dispatch: Dispatch) => {
-    dispatch(setUsersFollowingAC(true, userId));
-    let data = await usersAPI.unfollowUser(userId)
-    if (data.resultCode === 0) {
-        dispatch(unfollowAC(userId));
-    }
-    dispatch(setUsersFollowingAC(true, userId));
-
+    await followUnfollow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), unfollowAC)
 }

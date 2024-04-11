@@ -7,6 +7,7 @@ import {
     USERS_SET_TOTAL_COUNT,
     USERS_UNFOLLOW
 } from "../actions/actionTypes";
+import {updateObjectInArray} from "../../utils/object-helpers/object-helpers";
 
 
 let initialState = {
@@ -27,23 +28,13 @@ const usersReducer = (
         case USERS_FOLLOW : {
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: true}
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
             }
         }
         case USERS_UNFOLLOW : {
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
             }
         }
         case USERS_SET: {
