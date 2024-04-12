@@ -44,7 +44,6 @@ const Login: React.FC<LoginType> = (props) => {
     }
 
     if (isAuth) {
-        debugger
         return <Redirect to={"/profile"}/>
     }
     return (
