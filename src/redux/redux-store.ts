@@ -7,8 +7,10 @@ import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import { reducer as formReducer} from 'redux-form';
 import {ActionsType} from "./actions/actionCreatorTypes";
 import appReducer from "./reducers/app-reducer";
+import {composeWithDevTools} from "@redux-devtools/extension";
 
-export type ReduxStateType = ReturnType<typeof reducer>
+
+export type ReduxStateType = ReturnType<typeof rootReducer>
 export type AppThunkDispatch = ThunkDispatch<ReduxStateType, any, AnyAction>
 
 export type AppThunkType<ReturnType = void> = ThunkAction<
@@ -18,7 +20,7 @@ export type AppThunkType<ReturnType = void> = ThunkAction<
     ActionsType
 >
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
      app: appReducer,
      profilePage: profileReducer,
      dialogsPage: dialogsReducer,
@@ -27,6 +29,6 @@ const reducer = combineReducers({
      form: formReducer
 });
 
-export const store = createStore(reducer, applyMiddleware(thunkMiddleware))
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)))
 
 
