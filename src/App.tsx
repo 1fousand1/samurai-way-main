@@ -1,25 +1,28 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import {lazy} from 'react';
+
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeTC} from "./redux/thunks/appThunk";
 import {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import {withSuspense} from "./hoc/withSuspense";
 
-
+const DialogsContainer = lazy(() => import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = lazy(() => import("./components/Profile/ProfileContainer"));
+const LoginContainer = lazy(() => import("./components/Login/Login"))
+const UsersContainer = lazy(() => import("./components/Users/UsersContainer"))
 
 
 class App extends React.Component<AppPropsType> {
     componentDidMount() {
         this.props.initialize()
     }
+
     render() {
         if (!this.props.isInitialized) return <Preloader/>
 
@@ -29,10 +32,10 @@ class App extends React.Component<AppPropsType> {
                     <HeaderContainer/>
                     <Navbar/>
                     <div className='app-wrapper-content'>
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
+                        <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
+                        <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)}/>
+                        <Route path='/users' render={withSuspense(UsersContainer)}/>
+                        <Route path='/login' render={withSuspense(LoginContainer)}/>
                     </div>
                 </div>
             </BrowserRouter>
@@ -50,7 +53,7 @@ type MapDispatchToProps = {
 }
 
 export type AppPropsType = MapStateToPropsType & MapDispatchToProps
-const mapStateToProps = (state: ReduxStateType):MapStateToPropsType => ({
+const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => ({
     isInitialized: state.app.isInitialized,
     isAuth: state.auth.isAuth
 })
