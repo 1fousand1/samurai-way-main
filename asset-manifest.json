@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/connectify/static/css/main.3e43a84a.css",
-    "main.js": "/connectify/static/js/main.843bc0c3.js",
+    "main.js": "/connectify/static/js/main.23eb1f19.js",
     "static/css/504.870fa4bd.chunk.css": "/connectify/static/css/504.870fa4bd.chunk.css",
     "static/js/504.5a458ce5.chunk.js": "/connectify/static/js/504.5a458ce5.chunk.js",
     "static/css/362.1dd02ffd.chunk.css": "/connectify/static/css/362.1dd02ffd.chunk.css",
@@ -14,7 +14,7 @@
     "static/media/user.png": "/connectify/static/media/user.a6143582309785dca610.png",
     "index.html": "/connectify/index.html",
     "main.3e43a84a.css.map": "/connectify/static/css/main.3e43a84a.css.map",
-    "main.843bc0c3.js.map": "/connectify/static/js/main.843bc0c3.js.map",
+    "main.23eb1f19.js.map": "/connectify/static/js/main.23eb1f19.js.map",
     "504.870fa4bd.chunk.css.map": "/connectify/static/css/504.870fa4bd.chunk.css.map",
     "504.5a458ce5.chunk.js.map": "/connectify/static/js/504.5a458ce5.chunk.js.map",
     "362.1dd02ffd.chunk.css.map": "/connectify/static/css/362.1dd02ffd.chunk.css.map",
@@ -27,6 +27,6 @@
   },
   "entrypoints": [
     "static/css/main.3e43a84a.css",
-    "static/js/main.843bc0c3.js"
+    "static/js/main.23eb1f19.js"
   ]
 }
