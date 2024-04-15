@@ -27,7 +27,7 @@ class App extends React.Component<AppPropsType> {
         if (!this.props.isInitialized) return <Preloader/>
 
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <Navbar/>
