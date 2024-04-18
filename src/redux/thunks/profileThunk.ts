@@ -1,5 +1,5 @@
 import {profileAPI, usersAPI} from "../../api/api";
-import {setUserProfileAC, setUserStatusAC} from "../actions/profileAction";
+import {savePhotoSuccessAC, setUserProfileAC, setUserStatusAC} from "../actions/profileAction";
 import {Dispatch} from "redux";
 
 
@@ -15,6 +15,13 @@ export const updateUserStatusTC = (status: string): ThunkResult<void> => async (
     if (response.data.resultCode === 0) {
         dispatch(setUserStatusAC(status))
     }
+}
+export const savePhotoTC = (file: string): ThunkResult<void> => async (dispatch) => {
+    let response = await profileAPI.savePhoto(file);
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccessAC(response.data.data.photos))
+    }
+
 }
 
 export const setUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {

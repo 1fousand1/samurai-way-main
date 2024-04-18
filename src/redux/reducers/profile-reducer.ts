@@ -1,8 +1,8 @@
-import {PostType, ProfilePageType} from "../../types/profilePageTypes";
+import {PostType, ProfilePageType, ProfileType} from "../../types/profilePageTypes";
 import {
     PROFILE_POST_ADD,
     PROFILE_DELETE_POST,
-    PROFILE_SET_STATUS, PROFILE_SET_USER_PROFILE
+    PROFILE_SET_STATUS, PROFILE_SET_USER_PROFILE, SAVE_PHOTO_SUCCESS
 } from "../actions/actionTypes";
 import {ProfileActionType} from "../actions/profileAction";
 
@@ -12,9 +12,11 @@ let initialState = {
         {id: 1, message: 'Hi, how are you', likesCount: 12},
         {id: 2, message: 'Its my first post', likesCount: 11}],
     newPostText: 'it-kamasutra',
-    profile: null,
+    profile: null as ProfileType | null,
     status: ""
 }
+
+export type InitialStateType = typeof initialState
 
 
 const profileReducer = (
@@ -44,7 +46,12 @@ const profileReducer = (
         case PROFILE_DELETE_POST: {
             return {...state, posts: state.posts.filter(p => p.id != action.postId)}
         }
-
+        case SAVE_PHOTO_SUCCESS: {
+            return {...state,
+                profile: state.profile
+                    ? {...state.profile, photos: action.photos }
+                    : null }
+        }
         default:
             return state;
     }

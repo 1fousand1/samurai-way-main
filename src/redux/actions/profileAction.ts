@@ -2,16 +2,17 @@ import {
     PROFILE_DELETE_POST,
     PROFILE_POST_ADD,
     PROFILE_SET_STATUS,
-    PROFILE_SET_USER_PROFILE,
+    PROFILE_SET_USER_PROFILE, SAVE_PHOTO_SUCCESS,
     UPDATE_NEW_POST_TEXT
 } from "./actionTypes";
-import {ProfileType} from "../../types/profilePageTypes";
+import {PhotosType, ProfileType} from "../../types/profilePageTypes";
 
 export type ProfileActionType = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setUserStatusAC>
+    | ReturnType<typeof savePhotoSuccessAC>
 
 export const addPostActionCreator = (newPostText: string) => {
     return {
@@ -49,3 +50,9 @@ export const updateNewPostTextAC = (newText: string) => {
     } as const
 }
 
+export const savePhotoSuccessAC = (photos: PhotosType) => {
+    return {
+        type: SAVE_PHOTO_SUCCESS as typeof SAVE_PHOTO_SUCCESS,
+        photos: photos
+    } as const
+}
