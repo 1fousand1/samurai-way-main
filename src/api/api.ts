@@ -1,4 +1,5 @@
 import axios from "axios";
+import {PhotosType, ProfilePhotos} from "../types/profilePageTypes";
 
 
 export type userProfileType = {
@@ -23,13 +24,17 @@ export type userProfileType = {
     }
 }
 
+type SavePhotoResponseDataType = {
+    photos: ProfilePhotos
+}
+
 const instance = axios.create({
-    baseURL:'https://social-network.samuraijs.com/api/1.0/',
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true
 })
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10){
+    getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data
@@ -45,7 +50,7 @@ export const usersAPI = {
             return response.data;
         });
     },
-    getProfile(userId: number){
+    getProfile(userId: number) {
         console.warn("Obsolete method. Please use profileAPI object.")
         return profileAPI.getUserProfile(userId)
     }
@@ -53,20 +58,27 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    getUserProfile(userId: number){
+    getUserProfile(userId: number) {
         return instance.get<userProfileType>(`profile/${userId}`)
     },
-    getUserStatus(userId: number){
+    getUserStatus(userId: number) {
         return instance.get(`profile/status/${userId}`)
 
     },
-    updateUserStatus(status: string){
+    updateUserStatus(status: string) {
         return instance.put(`profile/status`, {status: status})
 
+    },
+    savePhoto(photoFile: string) {
+        const formData = new FormData();
+        formData.append("image", photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
-
 }
-
 
 
 export const authAPI = {
