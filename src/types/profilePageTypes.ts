@@ -18,21 +18,20 @@ export type ProfilePageType = {
 }
 
 export type ProfileType = {
-    photos: PhotosType
-    aboutMe: string
-    contacts: ContactsType
-    lookingForAJob:boolean
-    lookingForAJobDescription:string
-    fullName:string
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ProfileContacts,
+    photos: ProfilePhotos
+    aboutMe?: string
 }
 
-export type ContactsType = {
-    github: string,
-    vk: string,
-    facebook: string,
-    instagram: string,
-    twitter: string,
-    website: string,
-    youtube: string,
-    mainLink: string,
+export type ProfilePhotos = {
+    small: string
+    large: string
+}
+
+export type ProfileContacts = {
+    [key: string]: string | null
 }
