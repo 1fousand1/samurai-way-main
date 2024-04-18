@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styles from "./Pagination.module.css";
+import cn from "classnames"
 
 
 type UsersPropsType = {
@@ -38,9 +39,12 @@ export const Pagination: React.FC<UsersPropsType> = (
             setPortionNumber(portionNumber - 1)
         }}>PREV</button>}
 
-        {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+        {pages
+            .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map(p => {
-                return <span key={p} className={currentPage === p ? styles.selectedPage : ''}
+                return <span key={p} className={cn({
+                    [styles.selectedPage]: currentPage === p
+                }, styles.pageNumber)}
                              onClick={(event) => {
                                  onPageChanged(p)
                              }}>{p}</span>
