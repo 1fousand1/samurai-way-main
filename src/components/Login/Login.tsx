@@ -1,6 +1,6 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm} from "redux-form";
-import {createField, Input} from "../common/FormsControl/FormsControl";
+import {createField, GetStringKeys, Input} from "../common/FormsControl/FormsControl";
 import {required} from "../../utils/validators/validtors";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
@@ -9,19 +9,28 @@ import style from "../common/FormsControl/FormsControls.module.css"
 import {loginTC} from "../../redux/thunks/authThunk";
 
 
-type FormDataType = {
+type LoginFormPropsType = {
+    captchaUrl: string | null
+}
+
+export type LoginFormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    captcha: string | null
 }
+type LoginFormValuesTypeKeys = GetStringKeys<LoginFormDataType>;
+type AllSampleFormProps = LoginFormPropsType & InjectedFormProps<LoginFormDataType, LoginFormPropsType>
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
+const LoginForm: React.FC<AllSampleFormProps> = ({handleSubmit, error, captchaUrl}) => {
     return (
 
         <form onSubmit={handleSubmit}>
             {createField("Email", "email", [required], Input)}
             {createField("Password", "password", [required], Input, {type: "Password"})}
-            {createField("","rememberMe",[], Input, {type: "Checkbox"}, "rememberMe")}
+            {createField("", "rememberMe", [], Input, {type: "Checkbox"}, "rememberMe")}
+            {captchaUrl && <img src={captchaUrl}/>}
+            {captchaUrl && createField("Symbols from captcha", "captcha", [required], Input, {})}
             {error && <div className={style.formSummaryError}>
                 {error} </div>}
             <div>
@@ -31,16 +40,18 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, err
     )
 };
 
-const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
+const LoginReduxForm = reduxForm<LoginFormDataType, LoginFormPropsType>({form: "login"})(LoginForm)
 
 type LoginType = {
-    login: (email: string, password: string, rememberMe: boolean) => void
+    login: (email: string, password: string, rememberMe: boolean, captchaUrl: string | null) => void
     isAuth: boolean
+    captchaUrl: string | null
+
 }
 const Login: React.FC<LoginType> = (props) => {
-    const {login, isAuth} = props
-    const onSubmit = (formData: FormDataType) => {
-        login(formData.email, formData.password, formData.rememberMe)
+    const {login, isAuth, captchaUrl} = props
+    const onSubmit = (formData: LoginFormDataType) => {
+        login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     if (isAuth) {
@@ -49,12 +60,13 @@ const Login: React.FC<LoginType> = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
         </div>)
 }
 
 
 type MapStateToPropsType = {
+    captchaUrl: string | null
     isAuth: boolean
 
 }
@@ -62,6 +74,7 @@ type MapStateToPropsType = {
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

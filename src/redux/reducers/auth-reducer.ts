@@ -1,12 +1,13 @@
 import {AuthActionType, AuthType} from "../actions/authAction";
-import {AUTH_SET_USER_DATA} from "../actions/actionTypes";
+import {AUTH_GET_CAPTCHA_URL, AUTH_SET_USER_DATA} from "../actions/actionTypes";
 
 
 let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 }
 
 const authReducer = (
@@ -20,6 +21,12 @@ const authReducer = (
                 ...action.payload
             }
         }
+        case AUTH_GET_CAPTCHA_URL: {
+                return {
+                    ...state,
+                    captchaUrl: action.payload.captchaUrl
+                }
+            }
         default:
             return state;
     }
