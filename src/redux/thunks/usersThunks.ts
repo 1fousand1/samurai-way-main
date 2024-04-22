@@ -1,5 +1,4 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../../api/api";
 import {
     followAC,
     setCurrentPageAC,
@@ -7,6 +6,7 @@ import {
     setUsersAC, setUsersLoadingAC, unfollowAC
 } from "../actions/usersAction";
 import {followUnfollow} from "../../utils/followUnfollow/followUnfollow";
+import {usersAPI} from "../../api/usersApi";
 
 type ThunkResult<R> = (dispatch: Dispatch) => R;
 

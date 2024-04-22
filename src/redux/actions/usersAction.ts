@@ -1,6 +1,3 @@
-import {Dispatch} from "redux";
-import {ProfileType} from "../../types/profilePageTypes";
-import {profileAPI, usersAPI} from "../../api/api";
 import {UserType} from "../../types/usersTypes";
 import {
     USERS_FOLLOW, USERS_FOLLOWING_IN_PROGRESS,
