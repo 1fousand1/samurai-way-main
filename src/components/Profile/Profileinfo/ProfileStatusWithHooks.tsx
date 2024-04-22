@@ -20,11 +20,11 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
     const onUpdateStatusChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setLocalStatus(e.currentTarget.value)
     }
-        const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-            if (e.key === "Enter") {
-                deactivateEditMode()
-            }
+    const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            deactivateEditMode()
         }
+    }
 
 
 
@@ -42,6 +42,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
 
     return (
         <div>
+            <b>Status:</b>
             {!editMode ?
                 <p onDoubleClick={activateMode}>{status || "No status"}</p>
                 : <div>
@@ -58,4 +59,3 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
     );
 
 };
-

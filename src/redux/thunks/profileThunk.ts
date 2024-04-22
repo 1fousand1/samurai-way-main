@@ -1,9 +1,20 @@
-import {profileAPI, usersAPI} from "../../api/api";
+
 import {savePhotoSuccessAC, setUserProfileAC, setUserStatusAC} from "../actions/profileAction";
 import {Dispatch} from "redux";
+import {ProfileType} from "../../types/profilePageTypes";
+import {AppThunkType, ReduxStateType} from "../redux-store";
+import {stopSubmit} from "redux-form";
+import {profileAPI} from "../../api/profileApi";
+import {ResultCode} from "../../api/instance";
 
 
 type ThunkResult<R> = (dispatch: Dispatch) => R
+
+
+export const getUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
+    const data = await profileAPI.getProfile(userId)
+    dispatch(setUserProfileAC(data))
+}
 
 export const getUserStatusTC = (userId: number): ThunkResult<void> => async (dispatch: Dispatch) => {
     let response = await profileAPI.getUserStatus(userId)
@@ -24,10 +35,22 @@ export const savePhotoTC = (file: string): ThunkResult<void> => async (dispatch)
 
 }
 
-export const setUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
-    let response = await usersAPI.getProfile(userId)
-        dispatch(setUserProfileAC(response.data))
+export const updateProfileTC = (profile: ProfileType): AppThunkType => async (dispatch, getState: () => ReduxStateType) => {
+    const userId = getState().auth.id
+
+    if (!userId) {
+        console.warn('userId not found in the state')
+        return
+    }
+
+    const data = await profileAPI.updateProfile(profile)
+
+    if (data.resultCode === ResultCode.SUCCESS) {
+        dispatch(getUserProfileTC(userId))
+    } else {
+        dispatch(stopSubmit('edit-profile', {_error: data.messages[0] || 'Incorrect data'}))
+
+
+        return Promise.reject(data.messages[0])
+    }
 }
-
-
-

@@ -8,10 +8,16 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {ThunkDispatch} from "redux-thunk";
 import {ProfileType} from "../../types/profilePageTypes";
 import {ActionsType} from "../../redux/actions/actionCreatorTypes";
-import {getUserStatusTC, savePhotoTC, setUserProfileTC, updateUserStatusTC} from "../../redux/thunks/profileThunk";
+import {
+    getUserProfileTC,
+    getUserStatusTC,
+    savePhotoTC, updateProfileTC,
+    updateUserStatusTC
+} from "../../redux/thunks/profileThunk";
 import {InitialStateType} from "../../redux/reducers/profile-reducer";
 import {UserType} from "../../types/usersTypes";
 import {getUsers} from "../../redux/selectors/usersSelector";
+import {ProfileDataFormType} from "./ProfileDataForm/ProfileDataForm";
 
 
 export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
@@ -31,6 +37,7 @@ type MapDispatchPropsType = {
     getUserStatus: (userId: string) => void
     updateUserStatus: (status: string) => void
     savePhoto: (file: File) => void
+    updateProfile: (profile: ProfileDataFormType) => Promise<any>
 }
 
 type PathParamsType = {
@@ -72,8 +79,10 @@ export class ProfileContainer extends React.Component<ProfilePropsType> {
                      profile={this.props.profile}
                      status={this.props.status}
                      updateUserStatus={this.props.updateUserStatus}
-                     savePhoto={this.props.savePhoto}/>
-        )
+                     savePhoto={this.props.savePhoto}
+                     updateProfile = {this.props.updateProfile}/>
+
+    )
     }
 
 }
@@ -93,7 +102,7 @@ let mapStateToProps = (state: ReduxStateType): MapStatePropsType => {
 let mapDispatchToProps = (dispatch: ThunkDispatch<ReduxStateType, undefined, ActionsType>) => {
     return {
         setUserProfile: (userId: number) => {
-            dispatch(setUserProfileTC(userId))
+            dispatch(getUserProfileTC(userId))
         },
         getUserStatus: (userId: number) => {
             dispatch(getUserStatusTC(userId))
@@ -105,6 +114,9 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<ReduxStateType, undefined, Act
         ,
         savePhoto: (file: string) => {
             dispatch(savePhotoTC(file))
+        },
+        updateProfile: (profile: ProfileType) => {
+            dispatch(updateProfileTC(profile))
         }
     }
 }

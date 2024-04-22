@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {followACType, setUsersFollowingAC, unfollowACType} from "../../redux/actions/usersAction";
-import {ResultCode} from "../../api/api";
+import {ResultCode} from "../../api/instance";
+
 
 
 type FollowUnfollowAction = followACType | unfollowACType
