@@ -3,6 +3,7 @@ import {setAuthUserDataAC} from "../actions/authAction";
 import {stopSubmit} from "redux-form";
 import {authAPI} from "../../api/authApi";
 import {getCaptchaUrl} from "./securityThunk";
+import {ResultCode} from "../../api/instance";
 
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
     let response = await authAPI.me()
@@ -17,10 +18,10 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
 export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null) => async (dispatch: any) => {
     let response = await authAPI.login(email, password, rememberMe, captcha)
 
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode === ResultCode.SUCCESS) {
         dispatch(getAuthUserData())
     } else {
-        if (response.data.resultCode === 10) {
+        if (response.data.resultCode === ResultCode.CAPTCHA_ERROR) {
             dispatch(getCaptchaUrl())
         }
         let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
