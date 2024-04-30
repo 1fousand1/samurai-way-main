@@ -1,5 +1,5 @@
 import {ProfilePhotos, ProfileType} from "../types/profilePageTypes";
-import {instance} from "./instance";
+import {BaseResponseType, instance} from "./instance";
 
 export const profileAPI = {
     getUserProfile(userId: number) {
@@ -10,25 +10,26 @@ export const profileAPI = {
 
     },
     updateUserStatus(status: string) {
-        return instance.put(`profile/status`, {status: status})
+        return instance.put<BaseResponseType>(`profile/status`, {status: status})
 
     },
     savePhoto(photoFile: string) {
         const formData = new FormData();
         formData.append("image", photoFile)
-        return instance.put(`profile/photo`, formData, {
+        return instance.put<BaseResponseType<SavePhotoResponseDataType>>(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
     },
     updateProfile: (profile: ProfileType) => {
-        return instance.put(`profile`, profile)
+        return instance.put<BaseResponseType>(`profile`, profile)
             .then(response => response.data)
     },
     getProfile(userId: number) {
         console.warn("Obsolete method. Please use profileAPI object.")
-        return profileAPI.getUserProfile(userId).then(response=> response.data)
+        return profileAPI.getUserProfile(userId)
+            .then(response=> response.data)
     }
 }
 

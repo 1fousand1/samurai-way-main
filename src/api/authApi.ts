@@ -1,13 +1,25 @@
-import {instance} from "./instance";
+import {BaseResponseType, instance} from "./instance";
+
+
+type MeResponseDataType = {
+    id: number;
+    login: string;
+    email: string;
+}
+type LoginResponseDataType = {
+    userId: number
+}
 
 export const authAPI = {
     me() {
-        return instance.get(`auth/me`)
+        return instance.get<BaseResponseType<MeResponseDataType>>(`auth/me`)
     },
     login(email: string, password: string, rememberMe = false, captcha: string | null) {
-        return instance.post(`auth/login`, {email, password, rememberMe, captcha})
+        return instance.post<BaseResponseType<LoginResponseDataType>>(`auth/login`, {email, password, rememberMe, captcha})
     },
     logout() {
-        return instance.delete(`auth/login`)
+        return instance.delete<BaseResponseType>(`auth/login`)
     }
 }
+
+
