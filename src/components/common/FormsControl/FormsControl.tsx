@@ -4,17 +4,20 @@ import styles from './FormsControls.module.css'
 import {FieldValidatorType} from "../../../utils/validators/validtors";
 
 type DefaultInputPropsType = DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
+
 type FormsControlType = {
     input: DefaultInputPropsType
     meta: WrappedFieldMetaProps
     FormType: string
 }
-export const FormsControls: React.FC<FormsControlType> = ({
-                                                              input,
-                                                              meta,
-                                                              FormType,
-                                                              ...props
-                                                          }) => {
+export const FormsControls: React.FC<FormsControlType> = (
+    {
+        input,
+        meta,
+        FormType,
+        ...props
+
+    }) => {
     const error = meta.touched && meta.error
     const finalInputName = `${styles.formControl} ${error ? styles.error : ''}`
 
@@ -26,9 +29,9 @@ export const FormsControls: React.FC<FormsControlType> = ({
     )
 }
 export const Textarea: React.FC<FormsControlType> = ({...props}) => {
-        return (
-            <FormsControls {...props} FormType={"textarea"}/>
-        )
+    return (
+        <FormsControls {...props} FormType={"textarea"}/>
+    )
 }
 
 export const Input: React.FC<FormsControlType> = ({...props}) => {
