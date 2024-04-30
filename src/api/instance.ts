@@ -17,5 +17,5 @@ export type BaseResponseType<Data = {}, RC = ResultCode> = {
 export enum ResultCode {
     SUCCESS = 0,
     ERROR = 1,
-    CAPTCHA_ERROR = 10,
+    CAPTCHA_ERROR = 10
 }
