@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {lazy} from 'react';
 
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -11,6 +11,7 @@ import {initializeTC} from "./redux/thunks/appThunk";
 import {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {withSuspense} from "./hoc/withSuspense";
+import NotFound404 from "./components/common/NotFound404/NotFound404";
 
 const DialogsContainer = lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfileContainer = lazy(() => import("./components/Profile/ProfileContainer"));
@@ -37,6 +38,8 @@ class App extends React.Component<AppPropsType> {
                             <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)}/>
                             <Route path='/users' render={withSuspense(UsersContainer)}/>
                             <Route path='/login' render={withSuspense(LoginContainer)}/>
+                            <Route path='*' render={()=><NotFound404/>}/>
+
                         </Switch>
                     </div>
                 </div>
