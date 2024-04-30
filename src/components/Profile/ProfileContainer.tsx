@@ -20,9 +20,6 @@ import {getUsers} from "../../redux/selectors/usersSelector";
 import {ProfileDataFormType} from "./ProfileDataForm/ProfileDataForm";
 
 
-export type ProfileContainerPropsType = MapStatePropsType & MapDispatchPropsType
-
-
 type MapStatePropsType = {
     profilePage: InitialStateType
     profile: ProfileType | null
