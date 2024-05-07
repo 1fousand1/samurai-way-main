@@ -9,7 +9,6 @@ import {
 } from "./actionTypes";
 import {setUserProfileAC, setUserStatusAC} from "./profileAction";
 
-
 export type UsersActionType = followACType
     | unfollowACType
     | ReturnType<typeof setUserProfileAC>
