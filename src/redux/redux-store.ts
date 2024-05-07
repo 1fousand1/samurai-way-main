@@ -8,6 +8,7 @@ import { reducer as formReducer} from 'redux-form';
 import {ActionsType} from "./actions/actionCreatorTypes";
 import appReducer from "./reducers/app-reducer";
 import {composeWithDevTools} from "@redux-devtools/extension";
+import chatReducer from "./reducers/chat-reducer";
 
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
      dialogsPage: dialogsReducer,
      usersPage: usersReducer,
      auth: authReducer,
-     form: formReducer
+     form: formReducer,
+     chat: chatReducer
 });
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)))
