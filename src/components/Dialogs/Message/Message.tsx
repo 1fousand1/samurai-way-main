@@ -1,15 +1,16 @@
-import React from 'react';
-import s from './../Dialogs.module.css';
-
+import React from "react";
+import styles from "./Message.module.css";
 
 type MessagePropsType = {
-    message: string
-}
+    id: number;
+    message: string;
+};
 
-const Message = (props: MessagePropsType) => {
+export const MessageItem = (props: MessagePropsType) => {
+    const { message } = props;
     return (
-            <div className={s.dialog}>{props.message}</div>
-    )
-}
-
-export default Message;
+        <div className={styles.root}>
+            <div className={styles.message}>{message}</div>
+        </div>
+    );
+};

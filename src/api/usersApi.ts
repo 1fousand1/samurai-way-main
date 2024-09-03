@@ -1,18 +1,19 @@
-import {BaseResponseType, instance} from "./instance";
-import {UserType} from "../types/usersTypes";
+import { BaseResponseType, instance } from "./instance";
+import { UserType } from "../types/usersPageType";
 
 type UsersResponseDataType = {
-    items: UserType[]
-    totalCount: number
-    error: string
-}
+    items: UserType[];
+    totalCount: number;
+    error: string;
+};
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10, term: string = "", friend: null | boolean = null) {
-        const friendParam = friend === null ? '' : `&friend=${friend}`
-        return instance.get<UsersResponseDataType>(`users?page=${currentPage}&count=${pageSize}&term=${term}${friendParam}`)
-            .then(response => {
-                return response.data
+        const friendParam = friend === null ? "" : `&friend=${friend}`;
+        return instance
+            .get<UsersResponseDataType>(`users?page=${currentPage}&count=${pageSize}&term=${term}${friendParam}`)
+            .then((response) => {
+                return response.data;
             });
     },
     followUser(userId: number) {
@@ -24,6 +25,5 @@ export const usersAPI = {
         return instance.delete<BaseResponseType>(`follow/${userId}`).then((response) => {
             return response.data;
         });
-    }
-
-}
+    },
+};

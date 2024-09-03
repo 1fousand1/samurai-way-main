@@ -1,3 +1,4 @@
+/*
 import {securityApi} from "../../api/securityApi";
 import {Dispatch} from "redux";
 import {getCaptchaUrlAC} from "../actions/authAction";
@@ -10,4 +11,6 @@ export const getCaptchaUrl = () => async (dispatch: Dispatch) => {
 
     dispatch(getCaptchaUrlAC(captchaUrl))
 
-}
+}*/
+
+export {};

@@ -1,28 +1,34 @@
-import {Dispatch} from "redux";
+import { FilterType } from "../reducers/users-reducer";
+import { Dispatch } from "redux";
 import {
     followAC,
     setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, setUsersLoadingAC, unfollowAC
+    setTotalUserCountAC,
+    setUsersAC,
+    setUsersFilterAC,
+    setUsersLoadingAC,
+    unFollowAC,
 } from "../actions/usersAction";
-import {followUnfollow} from "../../utils/followUnfollow/followUnfollow";
-import {usersAPI} from "../../api/usersApi";
+import { usersAPI } from "../../api";
+import { followUnfollow } from "../../utils/followUnfollow/followUnfollow";
 
-type ThunkResult<R> = (dispatch: Dispatch) => R;
+export const getUsersTC = (currentPage: number, pageSize: number, filter: FilterType) => async (dispatch: Dispatch) => {
+    dispatch(setUsersLoadingAC(true));
+    dispatch(setCurrentPageAC(currentPage));
 
-export const getUsersTC = (currentPage: number, pageSize: number): ThunkResult<void> => async (dispatch: Dispatch) => {
-    dispatch(setUsersLoadingAC(true))
-    dispatch(setCurrentPageAC(currentPage))
+    dispatch(setUsersFilterAC(filter));
 
-    const data = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(setUsersLoadingAC(false))
+    const data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend);
+
+    dispatch(setUsersLoadingAC(false));
     dispatch(setUsersAC(data.items));
-    dispatch(setTotalUsersCountAC(data.totalCount))
-}
+    dispatch(setTotalUserCountAC(data.totalCount));
+};
 
-export const followTC = (userId: number): ThunkResult<void> => async (dispatch: Dispatch) => {
-    await followUnfollow(dispatch, userId, usersAPI.followUser.bind(usersAPI), followAC)
-}
-export const unfollowTC = (userId: number): ThunkResult<void> => async (dispatch: Dispatch) => {
-    await followUnfollow(dispatch, userId, usersAPI.unfollowUser.bind(usersAPI), unfollowAC)
-}
+export const followTC = (userId: number) => async (dispatch: Dispatch) => {
+    await followUnfollow(userId, followAC, usersAPI.followUser.bind(usersAPI), dispatch);
+};
+
+export const unFollowTC = (userId: number) => async (dispatch: Dispatch) => {
+    await followUnfollow(userId, unFollowAC, usersAPI.unfollowUser.bind(usersAPI), dispatch);
+};

@@ -1,19 +1,70 @@
-
-.header {
-    grid-area: h;
-    background-color: green;
+.root {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    height: 65px;
+    padding: 0 15px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(229, 231, 235, 1);
+    position: relative;
 }
 
-.header img {
-    width: 50px;
+.mainBlock {
+    display: flex;
+    max-width: 550px;
+    width: 100%;
+}
 
+.search {
+    width: 100%;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 30%;
+}
+
+.logoBlock {
+    display: flex;
+    align-items: center;
+    width: 190px;
+}
+
+.menuIcon {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.menuLogo {
+    cursor: pointer;
 }
 
 .loginBlock {
-    float: right;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.loginBlock a{
-    color: white;
+.loginName {
+    font-weight: 600;
+}
+
+.button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navlink {
+    cursor: pointer;
+    color: #666666;
+    font-weight: 600;
+}
+
+.navlink:hover {
+    color: #007bff;
 }

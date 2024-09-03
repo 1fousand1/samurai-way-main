@@ -1,10 +1,10 @@
-import React from 'react';
-import {UnderDevelopmentPage} from "../common/UnderDevelopmentPage/UnderDevelopmentPage";
+import React from "react";
+import { UnderDevelopmentPage } from "../common/UnderDevelopmentPage";
 
 const Settings = () => {
     return (
         <div>
-            <UnderDevelopmentPage/>
+            <UnderDevelopmentPage />
         </div>
     );
 };

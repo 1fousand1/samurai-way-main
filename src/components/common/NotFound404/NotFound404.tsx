@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import styles from "./NotFound404.module.css";
+import notFound404Image from "../../../assets/images/something-lost.png";
 
 const NotFound404 = () => {
     return (
-        <div>
-            <h1>404 Not Found</h1>
-            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-            <p>Go back</p>
+        <div className={styles.root}>
+            <img className={styles.img} src={notFound404Image} alt="not-found-404" />
+            <h1 className={styles.title}>Oops, looks like the page is lost.</h1>
+            <p className={styles.text}>This is not a fault, just an accident that was not intentional.</p>
         </div>
     );
 };

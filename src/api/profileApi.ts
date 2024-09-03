@@ -1,38 +1,33 @@
-import {ProfilePhotos, ProfileType} from "../types/profilePageTypes";
-import {BaseResponseType, instance} from "./instance";
+import { ProfilePhotos, ProfileType } from "../types/profilePageTypes";
+import { BaseResponseType, instance } from "./instance";
 
 export const profileAPI = {
-    getUserProfile(userId: number) {
-        return instance.get<ProfileType>(`profile/${userId}`)
+    getProfile: (userId: number) => {
+        return instance.get<ProfileType>(`profile/${userId}`).then((response) => response.data);
     },
-    getUserStatus(userId: number) {
-        return instance.get(`profile/status/${userId}`)
-
+    getStatus: (userId: string) => {
+        return instance.get(`profile/status/${userId}`).then((response) => response.data);
     },
-    updateUserStatus(status: string) {
-        return instance.put<BaseResponseType>(`profile/status`, {status: status})
-
+    updateStatus: (status: string) => {
+        return instance.put<BaseResponseType>(`profile/status`, { status: status }).then((response) => response.data);
     },
-    savePhoto(photoFile: string) {
+    savePhoto: (photoFile: string) => {
         const formData = new FormData();
-        formData.append("image", photoFile)
-        return instance.put<BaseResponseType<SavePhotoResponseDataType>>(`profile/photo`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+        formData.append("image", photoFile);
+        return instance
+            .put<BaseResponseType<SavePhotoResponseDataType>>(`profile/photo`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((response) => response.data);
     },
     updateProfile: (profile: ProfileType) => {
-        return instance.put<BaseResponseType>(`profile`, profile)
-            .then(response => response.data)
+        return instance.put<BaseResponseType>(`profile`, profile).then((response) => response.data);
     },
-    getProfile(userId: number) {
-        console.warn("Obsolete method. Please use profileAPI object.")
-        return profileAPI.getUserProfile(userId)
-            .then(response=> response.data)
-    }
-}
+};
 
+// types
 type SavePhotoResponseDataType = {
-    photos: ProfilePhotos
-}
+    photos: ProfilePhotos;
+};

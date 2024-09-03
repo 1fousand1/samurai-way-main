@@ -1,11 +1,13 @@
-import React from 'react';
+import { UnderDevelopmentPage } from "../../components/common/UnderDevelopmentPage";
 
-const News = () => {
+import styles from "./News.module.css";
+
+type PropsType = {};
+
+export const News = (props: PropsType) => {
     return (
-        <div>
-            News
+        <div className={styles.root}>
+            <UnderDevelopmentPage />
         </div>
     );
 };
-
-export default News;

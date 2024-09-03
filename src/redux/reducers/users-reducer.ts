@@ -1,79 +1,93 @@
-import {UsersPageType} from "../../types/usersPageType";
-import {UsersActionType} from "../actions/usersAction";
 import {
-    USERS_FOLLOW, USERS_FOLLOWING_IN_PROGRESS, USERS_IS_LOADING,
+    USERS_FOLLOW,
+    USERS_FOLLOWING_IN_PROGRESS,
+    USERS_IS_LOADING,
     USERS_SET,
     USERS_SET_CURRENT_PAGE,
+    USERS_SET_FILTER,
     USERS_SET_TOTAL_COUNT,
-    USERS_UNFOLLOW
+    USERS_UNFOLLOW,
 } from "../actions/actionTypes";
-import {updateObjectInArray} from "../../utils/object-helpers/object-helpers";
 
+import { updateObjectInArray } from "../../utils/object-helpers/object-helpers";
+import { ActionTypes } from "../actions/actionCreatorTypes";
+import { UserType } from "../../types/usersPageType";
 
-let initialState = {
-    users: [],
+export type FollowingInProgressType = number[];
+export type FilterType = {
+    term?: string;
+    friend?: null | boolean;
+};
+
+const initialState = {
+    users: [] as UserType[],
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    totalCount: 0,
-    isLoading: true,
-    followingInProgress: []
-}
+    isLoading: false,
+    followingInProgress: [] as FollowingInProgressType,
+    usersFriends: [] as UserType[],
+    filter: {
+        term: "",
+        friend: null as null | boolean,
+    },
+};
 
-const usersReducer = (
-    state: UsersPageType = initialState,
-    action: UsersActionType): UsersPageType => {
+export type InitialStateType = typeof initialState;
 
+export const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
-        case USERS_FOLLOW : {
+        case USERS_FOLLOW: {
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
-            }
+                users: updateObjectInArray(state.users, action.payload.userId, "id", { followed: true }),
+            };
         }
-        case USERS_UNFOLLOW : {
+        case USERS_UNFOLLOW: {
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
-            }
+                users: updateObjectInArray(state.users, action.payload.userId, "id", { followed: false }),
+            };
         }
         case USERS_SET: {
-            return {...state, users: action.users}
+            return {
+                ...state,
+                users: action.payload.users,
+            };
         }
         case USERS_SET_CURRENT_PAGE: {
-            return {...state, currentPage: action.currentPage}
+            return {
+                ...state,
+                currentPage: action.payload.currentPage,
+            };
         }
         case USERS_SET_TOTAL_COUNT: {
-            return {...state, totalUsersCount: action.totalCount}
+            return {
+                ...state,
+                totalUsersCount: action.payload.totalUsersCount,
+            };
         }
-
         case USERS_IS_LOADING: {
-            return {...state, isLoading: action.isLoading}
+            return {
+                ...state,
+                isLoading: action.payload.isLoading,
+            };
         }
-
         case USERS_FOLLOWING_IN_PROGRESS: {
             return {
                 ...state,
-                followingInProgress: action.isFetching
-                    ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id !== action.userId),
+                followingInProgress: action.payload.isFetching
+                    ? [...state.followingInProgress, action.payload.userId]
+                    : state.followingInProgress.filter((id) => id !== action.payload.userId),
             };
         }
-
+        case USERS_SET_FILTER: {
+            return {
+                ...state,
+                filter: { ...state.filter, ...action.payload },
+            };
+        }
         default:
             return state;
     }
-}
-
-
-export default usersReducer;
-
-
-
-
-
-
-
-
-
-
+};

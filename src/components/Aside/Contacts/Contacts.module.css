@@ -1,0 +1,21 @@
+.root {
+    border-top: 1px solid rgba(229, 231, 235, 1);
+    font-size: 16px;
+    font-weight: 500;
+    color: #2d2d2d;
+}
+
+.title {
+    margin-bottom: 12px;
+    padding: 12px 12px 0;
+}
+.items {
+    padding: 0px 12px;
+    list-style: none;
+}
+
+@media (max-width: 600px) {
+    .title {
+        display: none;
+    }
+}

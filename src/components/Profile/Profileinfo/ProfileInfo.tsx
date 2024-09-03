@@ -1,50 +1,66 @@
-import React, {ChangeEvent, useState} from 'react';
-import s from './ProfileInfo.module.css';
-import defaultUserPhoto from "../../../assets/images/user.png";
-import { ProfileType} from "../../../types/profilePageTypes";
-import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
+import React, { ChangeEvent } from "react";
 
-import {ProfileData} from "../ProfileData/ProfileData";
-import ProfileDataForm, {ProfileDataFormType} from "../ProfileDataForm/ProfileDataForm";
+import styles from "./ProfileInfo.module.css";
 
+import profileCover from "../../../assets/images/profile/profile-cover.webp";
+import { Preloader } from "../../common";
 
+import { ProfileStatusWithHooks } from "./ProfileStatus/ProfileStatusWithHooks";
+import defaultUserPhoto from "../../../assets/images/users/default-user.svg";
+import editIcon from "../../../assets/images/profile/icon-edit.svg";
+import { ProfileType } from "../../../types";
 
-type ProfileInfoPropsType = {
-    profile: ProfileType | null
-    status: string
-    updateUserStatus: (status: string) => void
-    isOwner: boolean
-    savePhoto: (file: File) => void
-    updateProfile: (profile: ProfileDataFormType) => Promise<any>
+type PropsType = {
+    profile: ProfileType | null;
+    status: string;
+    isOwner: boolean;
+    updateUserStatus: (status: string) => void;
+    savePhoto: (file: File) => void;
+};
 
-}
+export const ProfileInfo = (props: PropsType) => {
+    const { profile, status, isOwner, updateUserStatus, savePhoto } = props;
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto, updateProfile}) => {
+    if (!profile) {
+        return <Preloader />;
+    }
 
-    let [editMode,setEditMode] = useState(false)
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-        e.target.files && savePhoto(e.target.files[0])
-    }
-    const onSubmit = (formData: ProfileDataFormType) => {
-        updateProfile(formData)
-        setEditMode(false)
-    }
+        e.target.files && savePhoto(e.target.files[0]);
+    };
 
     return (
-        <div>
-            <div className={s.descriptionBlock}>
-                <img alt="avatar" src={profile?.photos.large || defaultUserPhoto} className={s.profilePhoto}/>
-                <p>{profile?.fullName}</p>
-                {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+        <div className={styles.root}>
+            <div className={styles.container__profileCover}>
+                <img className={styles.profileCover} src={profileCover} alt="profile-cover" />
+            </div>
+            <div className={styles.profileContent}>
+                <div className={styles.profileAvatar}>
+                    <img
+                        className={styles.profileAvatar__img}
+                        src={profile.photos.large || defaultUserPhoto}
+                        alt="profile-avatar-8"
+                    />
+                    {isOwner && (
+                        <label htmlFor="mainPhotoInput" className={styles.fileInputLabel}>
+                            <input
+                                id="mainPhotoInput"
+                                type="file"
+                                onChange={onMainPhotoSelected}
+                                className={styles.fileInput}
+                            />
+                            <img className={styles.fileInputIcon} src={editIcon} alt="edit-icon" />
+                        </label>
+                    )}
 
-                { editMode
-                    ? <ProfileDataForm onSubmit={onSubmit} profile={profile}/>
-                    : <ProfileData isOwner={isOwner} activateEditMode={()=>{setEditMode(true)}} profile={profile}/>}
-
-                <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
+                    <div className={styles.userStatus}></div>
+                </div>
+                <div className={styles.profileInfo}>
+                    <h1 className={styles.profileInfo__title}>{profile.fullName}</h1>
+                    <p className={styles.profileInfo__description}>{profile.aboutMe}</p>
+                    <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus} />
+                </div>
             </div>
         </div>
     );
 };
-
-export default ProfileInfo;

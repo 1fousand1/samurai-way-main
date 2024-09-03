@@ -1,20 +1,27 @@
-import React from 'react';
+import React from "react";
+import styles from "./ProfileContact.module.css";
 
-
-type profileContactPropsType = {
-    title: string | null
+type ProfileContactProps = {
+    title: string;
     value: string | null;
-}
-export const ProfileContact: React.FC<profileContactPropsType> = (
-    {
-        title,
-        value
-    }) => {
-    return (
-        <div>
-            <b>{title}</b>{value}
-
-        </div>
-    );
+    icon: string | undefined;
 };
 
+export const ProfileContact: React.FC<ProfileContactProps> = ({ title, value, icon }) => {
+    return (
+        <li className={styles.root}>
+            {icon && (
+                <div className={styles.iconBlock}>
+                    <a rel="noreferrer" href={value ? value : "#"} target={"_blank"}>
+                        <img className={styles.iconImage} src={icon} alt={`${title}-icon`} />
+                    </a>
+                </div>
+            )}
+            <p>
+                <a className={styles.link} href={value ? value : "#"} target={"_blank"}>
+                    {value}
+                </a>
+            </p>
+        </li>
+    );
+};

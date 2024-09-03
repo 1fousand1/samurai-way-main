@@ -1,58 +1,93 @@
-import {DialogsPageType, MessageType} from "../../types/dialogsPageTypes";
-import {ActionsType} from "../actions/actionCreatorTypes";
-import {DIALOGS_SEND_MESSAGE, DIALOGS_UPDATE_NEW_MESSAGE_BODY} from "../actions/actionTypes";
-import {DialogsActionType} from "../actions/dialogsActions";
-
-
+import { MessageType } from "../../types/dialogsPageTypes";
+import avatar1 from "../../assets/images/profile/avatars/avatar-1.webp";
+import avatar2 from "../../assets/images/profile/avatars/avatar-2.webp";
+import avatar3 from "../../assets/images/profile/avatars/avatar-3.webp";
+import avatar4 from "../../assets/images/profile/avatars/avatar-4.webp";
+import avatar5 from "../../assets/images/profile/avatars/avatar-5.webp";
+import avatar6 from "../../assets/images/profile/avatars/avatar-6.webp";
+import avatar7 from "../../assets/images/profile/avatars/avatar-7.webp";
+import avatar8 from "../../assets/images/profile/avatars/avatar-8.webp";
+import { UsersType } from "../../types/usersTypes";
+import { ActionTypes } from "../actions/actionCreatorTypes";
+import { MESSAGES_ADD } from "../actions/actionTypes";
 
 const initialState = {
     dialogs: [
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Andrey'},
-        {id: 3, name: 'Sveta'},
-        {id: 4, name: 'Sasha'},
-        {id: 5, name: 'Vicktor'},
-        {id: 6, name: 'Andrew'}
-    ],
-        messages: [
-    {id: 1, message: 'Hi'},
-    {id: 2, message: 'How is your IT-KAM?'},
-    {id: 3, message: 'yo'},
-    {id: 4, message: 'Yo'},
-    {id: 5, message: 'YO'}
-],
-    newMessageBody: "",
-    isAuth: false
-}
+        {
+            id: 1,
+            avatar: avatar1,
+            userFirstName: "Ivan",
+            userLastName: "Bykov",
+        },
+        {
+            id: 2,
+            avatar: avatar2,
+            userFirstName: "Liam",
+            userLastName: "Moore",
+        },
+        {
+            id: 3,
+            avatar: avatar3,
+            userFirstName: "Yoko",
+            userLastName: "Mizuno",
+        },
+        {
+            id: 4,
+            avatar: avatar4,
+            userFirstName: "Grace",
+            userLastName: "Sheffield",
+        },
+        {
+            id: 5,
+            avatar: avatar5,
+            userFirstName: "Sophia",
+            userLastName: "Orlova",
+        },
+        {
+            id: 6,
+            avatar: avatar6,
+            userFirstName: "Grace",
+            userLastName: "Taylor",
+        },
+        {
+            id: 7,
+            avatar: avatar7,
+            userFirstName: "Ethan",
+            userLastName: "Anderson",
+        },
+        {
+            id: 8,
+            avatar: avatar8,
+            userFirstName: "Fred",
+            userLastName: "Gibson",
+        },
+    ] as UsersType,
+    messages: [
+        { id: 1, message: "Hey there!" },
+        { id: 2, message: "Good morning!" },
+        { id: 3, message: "How's everything?" },
+        { id: 4, message: "Any updates?" },
+        { id: 5, message: "Need some help?" },
+        { id: 6, message: "Hey!" },
+        { id: 7, message: "What's up?" },
+        { id: 8, message: "Long time no see!" },
+    ] as MessageType[],
+};
 
-const dialogsReducer = (
-    state: DialogsPageType = initialState,
-    action: DialogsActionType
-): DialogsPageType => {
+export type InitialStateType = typeof initialState;
+
+export const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
-        case DIALOGS_UPDATE_NEW_MESSAGE_BODY: {
-            const newState: DialogsPageType = {
-                ...state,
-                newMessageBody: action.body,
-            };
-            return newState;
-        }
-        case DIALOGS_SEND_MESSAGE: {
+        case MESSAGES_ADD:
             const newMessage: MessageType = {
-                id: state.messages.length + 1,
-                message: action.newMessageBody,
+                id: 9,
+                message: action.payload.newMessageBody,
             };
-            const newState: DialogsPageType = {
+            return {
                 ...state,
                 messages: [...state.messages, newMessage],
             };
-            return newState;
-        }
         default:
             return state;
     }
 };
-
-
-
-export default dialogsReducer;

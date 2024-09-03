@@ -1,12 +1,8 @@
-import {PhotosType} from "./profilePageTypes";
-
-export type UserType = {
-    name: string;
+export type MyUserType = {
     id: number;
-    uniqueUrlName: null;
-    photos: PhotosType;
-    followed: boolean;
-    status: string
-}
+    avatar: string;
+    userFirstName: string;
+    userLastName: string;
+};
 
-export type UsersType = UserType[]
+export type UsersType = MyUserType[];

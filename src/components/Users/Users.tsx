@@ -1,37 +1,68 @@
-import React from 'react';
-import {UsersPropsType} from "./UsersContainer";
-import {Pagination} from "../common/Pagination/Pagination";
-import {User} from "./User";
+import React from "react";
 
-export type UsersProps = UsersPropsType & {
+import styles from "./Users.module.css";
+
+import { Pagination } from "../common/Pagination";
+import { User } from "./User";
+
+import { UserType } from "../../types/usersPageType";
+import { FilterType, FollowingInProgressType } from "../../redux/reducers/users-reducer";
+import { UsersFilteredButtons } from "./UsersFiltredButtons";
+
+type PropsType = {
+    users: UserType[];
+    currentPage: number;
+    pageSize: number;
+    totalUsersCount: number;
+    followingInProgress: FollowingInProgressType;
+    filter: FilterType;
+    follow: (userId: number) => void;
+    unFollow: (userId: number) => void;
     onPageChanged: (pageNumber: number) => void;
-}
+    onFilterChanged: (filter: FilterType) => void;
+};
 
-export const Users: React.FC<UsersProps> = (
-    {
+export const Users = (props: PropsType) => {
+    const {
         users,
         currentPage,
-        onPageChanged,
-        totalUsersCount,
         pageSize,
+        totalUsersCount,
         followingInProgress,
+        filter,
         follow,
-        unfollow
-    }) => {
+        unFollow,
+        onPageChanged,
+        onFilterChanged,
+    } = props;
 
-    return <div>
-        <Pagination currentPage={currentPage} onPageChanged={onPageChanged}
-                    totalItemsCount={totalUsersCount} pageSize={pageSize} portionSize={10}/>
-        {
-            users.map((user) =>
-                <User
-                    user={user}
-                    key={user.id}
-                    followingInProgress={followingInProgress}
-                    unfollow={unfollow}
-                    follow={follow}
-                />
-            )
-        }
-    </div>
-}
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.root}>
+                <div className={styles.usersHeader}>
+                    <h2 className={styles.title}>Users</h2>
+                    <UsersFilteredButtons filter={filter} onFilterChanged={onFilterChanged} />
+                </div>
+                <div className={styles.container}>
+                    <div className={styles.users}>
+                        {users.map((user) => (
+                            <User
+                                key={user.id}
+                                user={user}
+                                followingInProgress={followingInProgress}
+                                follow={follow}
+                                unFollow={unFollow}
+                            />
+                        ))}
+                    </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        pageSize={pageSize}
+                        totalItemsCount={totalUsersCount}
+                        onPageChanged={onPageChanged}
+                    />
+                </div>
+            </div>
+        </div>
+    );
+};

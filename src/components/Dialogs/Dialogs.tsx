@@ -1,48 +1,37 @@
-import React from 'react';
-import s from './Dialogs.module.css';
-import Message from "./Message/Message";
-import DialogItem from "./Dialogitem/Dialogitem";
-import {DialogsPropsType} from "./DialogsContainer";
-import {AddMessageForm, DialogsFormRedux, FormDataType} from "./Message/AddMessageForm";
-import {Redirect} from "react-router-dom";
+import React from "react";
+import styles from "./Dialogs.module.css";
+import { DialogItems } from "./DialogItems/DialogItems";
+import { DialogsPropsType } from "./DialogContainer/DialogsContainer";
+import { FormDataType } from "./Message/AddMessageForm";
+import { MessageItem } from "./Message/Message";
+import { useWindowWidth } from "../../hooks";
+import { DialogsFormRedux } from "./DialogsForm";
 
+export const Dialogs = (props: DialogsPropsType) => {
+    const { sendMessage } = props;
+    const { dialogs, messages } = props.dialogsPage;
 
-const Dialogs: React.FC<DialogsPropsType> = (props:  DialogsPropsType) => {
-    const {sendMessage} = props
-    const {dialogs, messages, newMessageBody} = props.dialogsPage;
+    const isDesktop = useWindowWidth(1200);
 
-    const dialogsElements = dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id}/>);
-    const messagesElements = messages.map((m) => <Message message={m.message} key={m.id}/>)
+    const addNewMessage = (values: FormDataType) => {
+        sendMessage(values.newMessageBody);
+    };
 
-    let addNewMessage = (values: FormDataType) => {
-        sendMessage(values.newMessageBody)
-    }
+    const dialogsElements = dialogs.map((dialog) => {
+        return <DialogItems key={dialog.id} id={dialog.id} dialog={dialog} />;
+    });
 
- /*   let onSendMessageClick = () => {
-        sendMessage();
-    }*/
-
-    let onNewMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value;
-        props.updateNewMessageBody(body)
-    }
-
+    const messagesElements = messages.map((message) => {
+        return <MessageItem key={message.id} id={message.id} message={message.message} />;
+    });
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                {dialogsElements}
+        <div className={styles.root}>
+            {!isDesktop && <div className={styles.dialogs__items}>{dialogsElements}</div>}
+            <div className={styles.messages}>
+                <div className={styles.messages__items}>{messagesElements}</div>
+                <DialogsFormRedux onSubmit={addNewMessage} />
             </div>
-            <div className={s.messages}>
-                <div>{messagesElements}</div>
-            </div>
-            <DialogsFormRedux onSubmit={addNewMessage}/>
         </div>
-    )
+    );
 };
-
-
-
-
-
-export default Dialogs;
