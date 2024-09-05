@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/connectify/static/css/main.1cce0dcb.css",
-    "main.js": "/connectify/static/js/main.375c5c24.js",
+    "main.js": "/connectify/static/js/main.5bbef5c4.js",
     "static/css/908.4d0f4695.chunk.css": "/connectify/static/css/908.4d0f4695.chunk.css",
     "static/js/908.0843e660.chunk.js": "/connectify/static/js/908.0843e660.chunk.js",
     "static/css/864.078291f5.chunk.css": "/connectify/static/css/864.078291f5.chunk.css",
@@ -45,7 +45,7 @@
     "static/media/icon-logout.svg": "/connectify/static/media/icon-logout.b56f33483eaf4c5f7f724ac85de0bd24.svg",
     "static/media/icon-home.svg": "/connectify/static/media/icon-home.71dddd0623c15f0b0310be50230fab89.svg",
     "main.1cce0dcb.css.map": "/connectify/static/css/main.1cce0dcb.css.map",
-    "main.375c5c24.js.map": "/connectify/static/js/main.375c5c24.js.map",
+    "main.5bbef5c4.js.map": "/connectify/static/js/main.5bbef5c4.js.map",
     "908.4d0f4695.chunk.css.map": "/connectify/static/css/908.4d0f4695.chunk.css.map",
     "908.0843e660.chunk.js.map": "/connectify/static/js/908.0843e660.chunk.js.map",
     "864.078291f5.chunk.css.map": "/connectify/static/css/864.078291f5.chunk.css.map",
@@ -58,6 +58,6 @@
   },
   "entrypoints": [
     "static/css/main.1cce0dcb.css",
-    "static/js/main.375c5c24.js"
+    "static/js/main.5bbef5c4.js"
   ]
 }
